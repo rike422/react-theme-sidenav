@@ -4,11 +4,11 @@
   "description": "A Simple SideBar Navigation written in React",
   "author": "Warren Mira",
   "scripts": {
-    "playground": "webpack-dev-server --content-base playground ",
+    "playground": "webpack-serve --config webpack.playground.config.js",
     "dist": "cp package.json dist && cp README.md dist && babel -D -d dist/ ./src ",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
-    "lint": "eslint src/*"
+    "precommit": "precise-commits"
   },
   "repository": {
     "type": "git",
@@ -29,31 +29,38 @@
   ],
   "dependencies": {
     "prop-types": "^15.5.8",
-    "styled-components": "*"
+    "recompose": "^0.27.1",
+    "styled-components": "^3.3.3"
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.24.0",
-    "babel-eslint": "^7.2.3",
-    "babel-loader": "^6.4.1",
+    "babel-eslint": "^8.2.5",
+    "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.2.2",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-2": "^6.22.0",
-    "enzyme": "^2.8.0",
-    "eslint": "^4.0.0",
+    "enzyme": "^3.3.0",
+    "eslint": "^5.0.1",
     "eslint-plugin-react": "^7.1.0",
-    "jest": "^19.0.2",
-    "react": "^15",
+    "flow-bin": "^0.75.0",
+    "husky": "^0.14.3",
+    "jest": "^23.2.0",
+    "precise-commits": "^1.0.2",
+    "prettier": "^1.13.6",
+    "react": "^16.4.1",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15",
+    "react-dom": "^16.4.1",
     "react-icons-kit": "^1.0.4",
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
-    "react-test-renderer": "^15.4.2",
+    "react-test-renderer": "^16.4.1",
     "styled-components": "^1.4.4",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.2"
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-serve": "^1.0.4"
   },
   "peerDependencies": {
     "react": "^15"

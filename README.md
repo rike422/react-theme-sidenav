@@ -129,7 +129,7 @@ These 2 components now support style and className props
 
 ## Examples
 
-The source code for the screenshot is under playground/index.js
+The source code for the screenshot is under playground/index.jsx
 
 
 ## Development
@@ -146,11 +146,11 @@ npm install
 ```
 3. Run playground script. The script below starts the dev server on port 8080.
 ```shell
-npm run playground -- playground/index.js
+npm run playground -- playground/index.jsx
 ```
 To change the port, pass --port
 ```shell
-npm run playground -- --port=8181 playground/index.js
+npm run playground -- --port=8181 playground/index.jsx
 ```
 
 ## Contributing
