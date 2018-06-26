@@ -27,8 +27,8 @@ const NavItemStyled = styled.div`
      padding: 8px 12px;
      cursor: pointer;
      position: relative;
-     background: ${props =>  props.isHighlighted ? props.highlightBgColor : 'inherit'};
-     color: ${props =>  props.isHighlighted ? props.highlightColor : 'inherit'};
+     background: ${props => props.isHighlighted ? props.highlightBgColor : 'inherit'};
+     color: ${props => props.isHighlighted ? props.highlightColor : 'inherit'};
      &:hover {
         color: ${props =>
   props.hoverColor || props.highlightColor || 'inherit'} !important;
@@ -109,14 +109,14 @@ class Nav extends Component {
     collapseIndicatorSize: "0.25em"
   };
 
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       collapsed: !props.expanded
     };
   }
 
-  onNavItemClicked() {
+  onNavItemClicked () {
     const { identity, onNavClick } = this.props;
     const onClick = identity;
     this.setState(
@@ -133,17 +133,17 @@ class Nav extends Component {
     );
   }
 
-  childClicked(childId) {
+  childClicked (childId) {
     const { onNavClick } = this.props;
     onNavClick(childId, this.props.id);
     this.props.onClick(childId, this.props.id);
   }
 
-  setSubNavRef(subNavEl) {
+  setSubNavRef (subNavEl) {
     this.subNavEl = subNavEl;
   }
 
-  renderSubNavIndicator() {
+  renderSubNavIndicator () {
     const { renderSubNavIndicator } = this.props;
     if (renderSubNavIndicator) {
       const subNavInd = renderSubNavIndicator(this.state.collapsed);
@@ -160,7 +160,7 @@ class Nav extends Component {
     );
   }
 
-  render() {
+  render () {
     const {
       hoverBgColor,
       hoverColor,
@@ -183,7 +183,7 @@ class Nav extends Component {
       highlightBgColor: highlightBgColor || this.context.highlightBgColor
     };
 
-    
+
     return (
       <div>
         <NavItemStyled className="__rsnav___item" {...itemProps}>

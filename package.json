@@ -7,8 +7,7 @@
     "playground": "webpack-serve --config webpack.playground.config.js",
     "dist": "cp package.json dist && cp README.md dist && babel -D -d dist/ ./src ",
     "test": "jest",
-    "test:watch": "npm run test -- --watch",
-    "precommit": "precise-commits"
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
