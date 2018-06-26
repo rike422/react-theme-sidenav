@@ -1,5 +1,5 @@
 import React, { Children, Component } from 'react';
-import PropTypes from 'prop-types';
+import { findIcon, findText } from "./util";
 import styled from 'styled-components';
 
 export const NavIcon = () => {
@@ -9,20 +9,6 @@ export const NavText = () => {
   throw new Error('Should not render');
 };
 
-const findComponent = ComponentToFind => children => {
-  return Children.toArray(children).reduce((found, next) => {
-    if (found === null && next !== null && next.type === ComponentToFind) {
-      return next;
-    }
-    return found;
-  }, null);
-};
-
-const findIcon = findComponent(NavIcon);
-const findText = findComponent(NavText);
-const identity = () => {
-};
-
 const NavItemStyled = styled.div`
      padding: 8px 12px;
      cursor: pointer;
@@ -30,10 +16,8 @@ const NavItemStyled = styled.div`
      background: ${props => props.isHighlighted ? props.highlightBgColor : 'inherit'};
      color: ${props => props.isHighlighted ? props.highlightColor : 'inherit'};
      &:hover {
-        color: ${props =>
-  props.hoverColor || props.highlightColor || 'inherit'} !important;
-        background: ${props =>
-  props.hoverBgColor || props.highlightBgColor || 'inherit'} !important;
+        color: ${props => props.hoverColor || props.highlightColor || 'inherit'} !important;
+        background: ${props => props.hoverBgColor || props.highlightBgColor || 'inherit'} !important;
      }
 `;
 
@@ -42,6 +26,7 @@ const NavIconCont = styled.div`
     display: inline-flex;
     width: 42px;
 `;
+
 const NavTextCont = styled.div`
     vertical-align: middle;
     display: inline-flex;
@@ -77,43 +62,46 @@ const collectStyleAndClsName = comp => {
   return { className, style };
 };
 
+
+type callback = (...args: Array<any>) => void;
+
+type Props = {
+  children?: React.Element<*>,
+  highlightColor?: string,
+  highlightBgColor?: string,
+  isHighlighted?: boolean,
+  id: string | number,
+  onClick?: callback,
+  onNavClick?: callback,
+  highlightedId?: string | number),
+  renderSubNavIndicator?: callback,
+  hoverBgColor?: string,
+  hoverColor?: string,
+  expanded?: boolean,
+  collapseIndicatorSize?: string
+}
+
+type ContextTypes = {
+  highlightColor: string,
+  highlightBgColor: string,
+  hoverBgColor: string,
+  hoverColor: string
+}
+
+const defaultProps = {
+  onNavClick: identity,
+  collapseIndicatorSize: "0.25em"
+}
+
+const state = {
+  collapsed: !props.expanded
+};
+
 class Nav extends Component {
-  static contextTypes = {
-    highlightColor: PropTypes.string,
-    highlightBgColor: PropTypes.string,
-    hoverBgColor: PropTypes.string,
-    hoverColor: PropTypes.string
-  };
 
-  static propTypes = {
-    children: PropTypes.node,
-    highlightColor: PropTypes.string,
-    highlightBgColor: PropTypes.string,
-    isHighlighted: PropTypes.bool,
-    id: PropTypes.oneOfType([
-      PropTypes.string.isRequired,
-      PropTypes.number.isRequired
-    ]),
-    onClick: PropTypes.func,
-    onNavClick: PropTypes.func,
-    highlightedId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    renderSubNavIndicator: PropTypes.func,
-    hoverBgColor: PropTypes.string,
-    hoverColor: PropTypes.string,
-    expanded: PropTypes.bool,
-    collapseIndicatorSize: PropTypes.string
-  };
-
-  static defaultProps = {
-    onNavClick: identity,
-    collapseIndicatorSize: "0.25em"
-  };
-
-  constructor (props) {
+  static constructor (props) {
     super(props);
-    this.state = {
-      collapsed: !props.expanded
-    };
+
   }
 
   onNavItemClicked () {

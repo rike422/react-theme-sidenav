@@ -1,32 +1,41 @@
-import React, { Children, cloneElement, Component } from 'react';
-import PropTypes from 'prop-types';
-
+import React, { Children, cloneElement } from 'react';
+import { compose, withContext } from 'recompose';
 import Nav from './Nav';
 
-const contextTypes = {
-  highlightColor: PropTypes.string,
-  highlightBgColor: PropTypes.string,
-  hoverBgColor: PropTypes.string,
-  hoverColor: PropTypes.string
+type ContextTypes = {
+  highlightColor?: string,
+  highlightBgColor?: string,
+  hoverBgColor?: string,
+  hoverColor?: string
+};
+
+type PropTypes = {
+  ...contextTypes,
+  selected: string,
+  defaultSelected: string,
+  onItemSelection?: (...args) => void
 };
 
 const noop = () => {
 };
 
-export class SideNav extends Component {
-  static childContextTypes = contextTypes;
-  static propTypes = {
-    ...contextTypes,
-    selected: PropTypes.string,
-    defaultSelected: PropTypes.string,
-    onItemSelection: PropTypes.func
-  };
-  onNavClick (id, parent = null)  {
-    const { onItemSelection = noop } = this.props;
+const state = {
+  selected: props.defaultSelected,
+  defaultSelected: props.defaultSelected
+};
 
-    if (this.state.defaultSelected) {
+
+function SideNav (props: PropTypes) {
+  const { children, setSelected, onItemSelection } = props;
+  const cb = () => {
+    if (onItemSelection != undefined) {
+      onItemSelection(id)
+    }
+  }
+  const onNavClick = (id: string, parent = null) => {
+    if (props.defaultSelected) {
       //lets manage it
-      this.setState({ selected: id }, () => {
+      setSelected(id, () => {
         onItemSelection(id, parent);
       });
     } else {
@@ -34,43 +43,41 @@ export class SideNav extends Component {
     }
   };
 
-  constructor (props) {
-    super(props);
-    this.state = {
-      selected: props.defaultSelected,
-      defaultSelected: props.defaultSelected
-    };
-  }
+  const items = Children.toArray(children).map(child => {
+    if (child && child.type === Nav) {
+      const currentSelected = props.defaultSelected
+        ? this.state.selected
+        : this.props.selected;
 
-  getChildContext () {
-    const {
-      highlightColor,
-      highlightBgColor,
-      hoverBgColor,
-      hoverColor
-    } = this.props;
-    return { highlightColor, highlightBgColor, hoverBgColor, hoverColor };
-  }
+      return cloneElement(child, {
+        highlightedId: currentSelected,
+        onClick: onNavClick
+      });
+    }
+    return child;
+  })
 
-  render () {
-    const { children } = this.props;
-    return (
-      <div>
-        {Children.toArray(children).map(child => {
-          if (child && child.type === Nav) {
-            const currentSelected = this.state.defaultSelected
-              ? this.state.selected
-              : this.props.selected;
-            return cloneElement(child, {
-              highlightedId: currentSelected,
-              onClick: this.onNavClick
-            });
-          }
-          return child;
-        })}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {...items}
+    </div>
+  );
 }
 
-export default SideNav;
+compose(
+  withContext({}, (props: ContextTypes) => {
+      const {
+        highlightColor,
+        highlightBgColor,
+        hoverBgColor,
+        hoverColor
+      } = props;
+      return { highlightColor, highlightBgColor, hoverBgColor, hoverColor };
+    }
+  ),
+  withState('selected', 'setSelected', ''),
+  withState('defaultSelected', 'setDefaultSelected', '')
+)
+export {
+  SideNav
+}
