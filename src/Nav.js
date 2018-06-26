@@ -118,4 +118,131 @@ export class Nav extends Component {
       collapsed: !props.expanded
     };
   }
+
+  onNavItemClicked () {
+    const { identity, onNavClick } = this.props;
+    const onClick = identity
+    this.setState(
+      {
+        collapsed: !this.state.collapsed
+      },
+      () => {
+        onNavClick(this.props.id, null);
+        onClick(this.props.id, null);
+        if (this.subNavEl && !this.s) {
+          this.subNavEl.style.maxHeight = !this.state.collapsed
+            ? null
+            : '0px';
+        }
+      }
+    );
+  }
+
+  childClicked (childId) {
+    const { onNavClick } = this.props;
+    onNavClick(childId, this.props.id);
+    this.props.onClick(childId, this.props.id);
+  }
+
+  setSubNavRef (subNavEl) {
+    this.subNavEl = subNavEl;
+  }
+
+  renderSubNavIndicator () {
+    const { renderSubNavIndicator } = this.props;
+    if (renderSubNavIndicator) {
+      const subNavInd = renderSubNavIndicator(this.state.collapsed);
+      if (!subNavInd && typeof console !== 'undefined') {
+        console.warn('subNavIndicator returned undefined or null');
+      }
+      return subNavInd || null;
+    }
+    return (<CollapsedIndicator collapsed={this.state.collapsed} size={this.props.collapseIndicatorSize}/>)
+  }
+
+  render () {
+    const {
+      hoverBgColor,
+      hoverColor,
+      highlightColor,
+      highlightBgColor,
+      children,
+      highlightedId,
+      onNavClick = identity,
+      id
+    } = this.props;
+    const icon = findIcon(children);
+    const text = findText(children);
+    const itemProps = {
+      hoverBgColor: hoverBgColor || this.context.hoverBgColor,
+      hoverColor: hoverColor || this.context.hoverColor,
+      onClick: this.onNavItemClicked,
+      onNavClick,
+      isHighlighted: id === highlightedId,
+      highlightColor: highlightColor || this.context.highlightColor,
+      highlightBgColor: highlightBgColor || this.context.highlightBgColor
+    };
+
+    return (
+      <div>
+        <NavItemStyled className="__rsnav___item" {...itemProps}>
+          <NavIconCont {...collectStyleAndClsName(icon)}>
+            {icon && icon.props ? icon.props.children : null}
+          </NavIconCont>
+          <NavTextCont {...collectStyleAndClsName(text)}>
+            {text && text.props ? text.props.children : null}
+          </NavTextCont>
+          {hasChildNav(children)
+            ? <div
+              style={{
+                position: 'absolute',
+                right: '16px',
+                bottom: '4px'
+              }}
+            >
+              {this.renderSubNavIndicator()}{' '}
+            </div>
+            : null}
+        </NavItemStyled>
+        <div
+          ref={this.setSubNavRef}
+          style={{
+            maxHeight: this.state.collapsed ? 0 : null,
+            transition: 'all 0.2s ease-in-out'
+          }}
+        >
+          {Children.toArray(children)
+            .filter(child => child.type === Nav && !this.state.collapsed)
+            .map((child, idx) => {
+              const sicon = findIcon(child.props.children);
+              const stext = findText(child.props.children);
+              const isItemHighlighted =
+                highlightedId === `${id}/${child.props.id}`;
+
+              return (
+                <NavItemStyled
+                  className={'__rsnav___itemchild'}
+                  key={idx}
+                  {...itemProps}
+                  onClick={() => {
+                    child.props.onNavClick(),
+                      this.childClicked(`${id}/${child.props.id}`);
+                  }}
+                  isHighlighted={isItemHighlighted}
+                >
+                  <NavIconCont {...collectStyleAndClsName(sicon)}>
+                    {null}
+                  </NavIconCont>
+                  <NavTextCont {...collectStyleAndClsName(stext)}>
+                    {stext ? stext.props.children : null}
+                  </NavTextCont>
+                </NavItemStyled>
+              );
+            })}
+        </div>
+      </div>
+    );
+  }
 }
+
+export default Nav;
