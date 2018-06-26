@@ -19,36 +19,24 @@ type PropTypes = {
 const noop = () => {
 };
 
-const state = {
-  selected: props.defaultSelected,
-  defaultSelected: props.defaultSelected
-};
+function SideNavBase (props: PropTypes) {
+  const { children, setSelected, defaultSelected, selected } = props;
+  const callback = props.defaultSelected || noop
 
-
-function SideNav (props: PropTypes) {
-  const { children, setSelected, onItemSelection } = props;
-  const cb = () => {
-    if (onItemSelection != undefined) {
-      onItemSelection(id)
-    }
-  }
   const onNavClick = (id: string, parent = null) => {
-    if (props.defaultSelected) {
+    if (defaultSelected) {
       //lets manage it
       setSelected(id, () => {
-        onItemSelection(id, parent);
+        callback(id, parent)
       });
     } else {
-      onItemSelection(id, parent);
+      callback(id, parent)
     }
   };
 
   const items = Children.toArray(children).map(child => {
     if (child && child.type === Nav) {
-      const currentSelected = props.defaultSelected
-        ? this.state.selected
-        : this.props.selected;
-
+      const currentSelected = (defaultSelected != null) ? defaultSelected : selected
       return cloneElement(child, {
         highlightedId: currentSelected,
         onClick: onNavClick
@@ -64,7 +52,7 @@ function SideNav (props: PropTypes) {
   );
 }
 
-compose(
+const SideNav = compose(
   withContext({}, (props: ContextTypes) => {
       const {
         highlightColor,
@@ -77,7 +65,8 @@ compose(
   ),
   withState('selected', 'setSelected', ''),
   withState('defaultSelected', 'setDefaultSelected', '')
-)
+)(SideNavBase)
+
 export {
   SideNav
 }
