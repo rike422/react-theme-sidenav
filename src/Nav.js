@@ -77,7 +77,7 @@ const collectStyleAndClsName = comp => {
   return { className, style };
 };
 
-export class Nav extends Component {
+class Nav extends Component {
   static contextTypes = {
     highlightColor: PropTypes.string,
     highlightBgColor: PropTypes.string,
