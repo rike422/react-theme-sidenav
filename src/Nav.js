@@ -183,6 +183,7 @@ class Nav extends Component {
       highlightBgColor: highlightBgColor || this.context.highlightBgColor
     };
 
+    
     return (
       <div>
         <NavItemStyled className="__rsnav___item" {...itemProps}>
