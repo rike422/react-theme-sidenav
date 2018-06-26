@@ -83,7 +83,7 @@ class Nav extends Component {
     highlightBgColor: PropTypes.string,
     hoverBgColor: PropTypes.string,
     hoverColor: PropTypes.string
-  }
+  };
 
   static propTypes = {
     children: PropTypes.node,
@@ -102,23 +102,23 @@ class Nav extends Component {
     hoverColor: PropTypes.string,
     expanded: PropTypes.bool,
     collapseIndicatorSize: PropTypes.string
-  }
+  };
 
   static defaultProps = {
     onNavClick: identity,
-    collapseIndicatorSize: '0.25em'
-  }
+    collapseIndicatorSize: "0.25em"
+  };
 
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
       collapsed: !props.expanded
     };
   }
 
-  onNavItemClicked () {
+  onNavItemClicked() {
     const { identity, onNavClick } = this.props;
-    const onClick = identity
+    const onClick = identity;
     this.setState(
       {
         collapsed: !this.state.collapsed
@@ -127,37 +127,40 @@ class Nav extends Component {
         onNavClick(this.props.id, null);
         onClick(this.props.id, null);
         if (this.subNavEl && !this.s) {
-          this.subNavEl.style.maxHeight = !this.state.collapsed
-            ? null
-            : '0px';
+          this.subNavEl.style.maxHeight = !this.state.collapsed ? null : "0px";
         }
       }
     );
   }
 
-  childClicked (childId) {
+  childClicked(childId) {
     const { onNavClick } = this.props;
     onNavClick(childId, this.props.id);
     this.props.onClick(childId, this.props.id);
   }
 
-  setSubNavRef (subNavEl) {
+  setSubNavRef(subNavEl) {
     this.subNavEl = subNavEl;
   }
 
-  renderSubNavIndicator () {
+  renderSubNavIndicator() {
     const { renderSubNavIndicator } = this.props;
     if (renderSubNavIndicator) {
       const subNavInd = renderSubNavIndicator(this.state.collapsed);
-      if (!subNavInd && typeof console !== 'undefined') {
-        console.warn('subNavIndicator returned undefined or null');
+      if (!subNavInd && typeof console !== "undefined") {
+        console.warn("subNavIndicator returned undefined or null");
       }
       return subNavInd || null;
     }
-    return (<CollapsedIndicator collapsed={this.state.collapsed} size={this.props.collapseIndicatorSize}/>)
+    return (
+      <CollapsedIndicator
+        collapsed={this.state.collapsed}
+        size={this.props.collapseIndicatorSize}
+      />
+    );
   }
 
-  render () {
+  render() {
     const {
       hoverBgColor,
       hoverColor,
@@ -189,23 +192,23 @@ class Nav extends Component {
           <NavTextCont {...collectStyleAndClsName(text)}>
             {text && text.props ? text.props.children : null}
           </NavTextCont>
-          {hasChildNav(children)
-            ? <div
+          {hasChildNav(children) ? (
+            <div
               style={{
-                position: 'absolute',
-                right: '16px',
-                bottom: '4px'
+                position: "absolute",
+                right: "16px",
+                bottom: "4px"
               }}
             >
-              {this.renderSubNavIndicator()}{' '}
+              {this.renderSubNavIndicator()}{" "}
             </div>
-            : null}
+          ) : null}
         </NavItemStyled>
         <div
           ref={this.setSubNavRef}
           style={{
             maxHeight: this.state.collapsed ? 0 : null,
-            transition: 'all 0.2s ease-in-out'
+            transition: "all 0.2s ease-in-out"
           }}
         >
           {Children.toArray(children)
@@ -218,7 +221,7 @@ class Nav extends Component {
 
               return (
                 <NavItemStyled
-                  className={'__rsnav___itemchild'}
+                  className={"__rsnav___itemchild"}
                   key={idx}
                   {...itemProps}
                   onClick={() => {
