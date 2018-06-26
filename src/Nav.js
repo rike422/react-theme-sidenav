@@ -27,11 +27,8 @@ const NavItemStyled = styled.div`
      padding: 8px 12px;
      cursor: pointer;
      position: relative;
-     background: ${props =>
-  props.isHighlighted ? props.highlightBgColor : 'inherit'};
-     color: ${props =>
-  props.isHighlighted ? props.highlightColor : 'inherit'};
-
+     background: ${props =>  props.isHighlighted ? props.highlightBgColor : 'inherit'};
+     color: ${props =>  props.isHighlighted ? props.highlightColor : 'inherit'};
      &:hover {
         color: ${props =>
   props.hoverColor || props.highlightColor || 'inherit'} !important;
@@ -86,7 +83,7 @@ export class Nav extends Component {
     highlightBgColor: PropTypes.string,
     hoverBgColor: PropTypes.string,
     hoverColor: PropTypes.string
-  };
+  }
 
   static propTypes = {
     children: PropTypes.node,
@@ -105,7 +102,7 @@ export class Nav extends Component {
     hoverColor: PropTypes.string,
     expanded: PropTypes.bool,
     collapseIndicatorSize: PropTypes.string
-  };
+  }
 
   static defaultProps = {
     onNavClick: identity,
