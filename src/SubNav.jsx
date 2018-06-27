@@ -1,44 +1,40 @@
 import React, { Children, type HOC } from 'react';
-import { findIcon, findText } from "./util";
+import styled from 'styled-components'
 import Nav from "./Nav";
+import { NavItem } from "./NavItem";
 
-function SubNav () {
+SubNabWrapper = styled.div`
+  maxHeight: ${(p) => {
+    p.collapsed ? 0 : null
+  }};
+  transition: all 0.2s ease-in-out
+`
+
+const SubNav = (props) => {
+  const { id, highlightedId, childClicked } = props
+
   return (
-    <div
-      style={{
-        maxHeight: this.state.collapsed ? 0 : null,
-        transition: "all 0.2s ease-in-out"
-      }}
-    >
+    <SubNabWrapper>
       {Children.toArray(children)
         .filter(child => child.type === Nav && collapsed)
         .map((child, idx) => {
-          const sicon = findIcon(child.props.children);
-          const stext = findText(child.props.children);
           const isItemHighlighted =
             highlightedId === `${id}/${child.props.id}`;
 
           return (
-            <NavItemStyled
-              className={"__rsnav___itemchild"}
+            <NavItem
               key={idx}
-              {...itemProps}
-              onClick={() => {
-                child.props.onNavClick(),
-                  this.childClicked(`${id}/${child.props.id}`);
+              onClick={(e) => {
+                props.onNavClick()
+                childClicked(`${id}/${child.props.id}`);
               }}
               isHighlighted={isItemHighlighted}
             >
-              <NavIconCont {...collectStyleAndClsName(sicon)}>
-                {null}
-              </NavIconCont>
-              <NavTextCont {...collectStyleAndClsName(stext)}>
-                {stext ? stext.props.children : null}
-              </NavTextCont>
-            </NavItemStyled>
+              {...children}
+            </NavItem>
           );
         })}
-    </div>
+    </SubNabWrapper>
   )
 }
 

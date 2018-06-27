@@ -1,13 +1,5 @@
-import React, { Children, type HOC } from 'react';
+import React, { type HOC } from 'react';
 import { findIcon, findText } from "./util";
-import { renderSubNavIndicator } from './CollapsedIndicator'
-
-
-const hasChildNav = children => {
-  return Children.toArray(children).reduce((partial, next) => {
-    return partial === false ? next.type === Nav : partial;
-  }, false);
-};
 
 type callback = (...args: Array<any>) => void;
 
@@ -89,28 +81,20 @@ function Nav (props) {
   return (
     <div>
       <NavItemStyled className="__rsnav___item" {...itemProps}>
-        <NavTextCont {...collectStyleAndClsName(text)}>
-          {text?.props?.children}
-        </NavTextCont>
-        {hasChildNav(children) ? (
-          <div
-            style={{
-              position: "absolute",
-              right: "16px",
-              bottom: "4px"
-            }}
-          >
-            {renderSubNavIndicator()}{" "}
-          </div>
-        ) : null}
+        {...children}
       </NavItemStyled>
-      );
-      }
+    </div>
+  );
 
-      compose(
-      withState('collapsed', 'setCollapsed', false),
-      getContext({
+}
 
-    })
-      )
-      export default Nav;
+compose(
+  withState('collapsed', 'setCollapsed', false),
+  getContext({}, (props) => {
+    const { theme } = props
+    return {
+      theme: theme
+    }
+  })
+)
+export default Nav;

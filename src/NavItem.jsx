@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import { type Theme } from './types'
 
 const NavItemStyled = styled.div`
      padding: 8px 12px;
@@ -13,11 +14,15 @@ const NavItemStyled = styled.div`
      }
 `;
 
-
-const NavItem = (props) => {
-  const { theme } = props
+type Props = {
+  id: string,
+  theme: Theme,
+  onClick: (id: string)  => void
+}
+const NavItem = (props: Props) => {
+  const { theme, onClick } = props
   return (
-    <NavItemStyled theme={theme}>
+    <NavItemStyled theme={theme} onClick={() => { onClick(id)}}>
       {props.text}
     </NavItemStyled>
   )
