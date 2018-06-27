@@ -142,19 +142,19 @@ function Nav(props) {
               bottom: "4px"
             }}
           >
-            {this.renderSubNavIndicator()}{" "}
+            {renderSubNavIndicator()}{" "}
           </div>
         ) : null}
       </NavItemStyled>
       <div
-        ref={this.setSubNavRef}
+        ref={setSubNavRef}
         style={{
           maxHeight: this.state.collapsed ? 0 : null,
           transition: "all 0.2s ease-in-out"
         }}
       >
         {Children.toArray(children)
-          .filter(child => child.type === Nav && !this.state.collapsed)
+          .filter(child => child.type === Nav && collapsed)
           .map((child, idx) => {
             const sicon = findIcon(child.props.children);
             const stext = findText(child.props.children);
