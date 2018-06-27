@@ -66,7 +66,7 @@ function Nav (props) {
 
   return (
     <div>
-      <NavItemStyled className="__rsnav___item" {...itemProps}>
+      <NavItemStyled {...itemProps}>
         {...children}
       </NavItemStyled>
     </div>

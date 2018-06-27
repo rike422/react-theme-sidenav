@@ -16,17 +16,19 @@ const NavItemStyled = styled.div`
 
 type Props = {
   id: string,
-  theme: Theme,
-  onClick: (id: string) => void
+  theme?: Theme,
+  children?: React.Element<*>,
+  onClick?: (id: string) => void
 }
 
 const NavItem = (props: Props) => {
-  const { id, theme, onClick } = props
+  const { id, theme, onClick, children } = props
+  const onItemClick = (e) => {
+    onItemClick(id)
+  }
   return (
-    <NavItemStyled theme={theme} onClick={() => {
-      onClick(id)
-    }}>
-      {props.text}
+    <NavItemStyled theme={theme} onClick={onItemClick}>
+      {...children}
     </NavItemStyled>
   )
 }
