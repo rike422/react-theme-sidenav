@@ -1,23 +1,7 @@
-import React, { Children, Component, type HOC } from 'react';
+import React, { Children, type HOC } from 'react';
 import { findIcon, findText } from "./util";
-import styled from 'styled-components';
 import { renderSubNavIndicator } from './CollapsedIndicator'
 
-export const NavIcon = () => {
-
-  throw new Error('Should not render');
-};
-export const NavText = () => {
-  throw new Error('Should not render');
-};
-
-
-
-const NavTextCont = styled.div`
-    vertical-align: middle;
-    display: inline-flex;
-    padding-right: 16px;
-`;
 
 const hasChildNav = children => {
   return Children.toArray(children).reduce((partial, next) => {
@@ -58,7 +42,7 @@ const setSubNavRef = (subNavEl) => {
   this.subNavEl = subNavEl;
 }
 
-function Nav(props) {
+function Nav (props) {
   const {
     hoverBgColor,
     hoverColor,
@@ -93,12 +77,12 @@ function Nav(props) {
   const text = findText(children);
 
   const itemProps = {
-    hoverBgColor: hoverBgColor ,
-    hoverColor: hoverColor ,
+    hoverBgColor: hoverBgColor,
+    hoverColor: hoverColor,
     onClick: onNavItemClicked,
     onNavClick,
     isHighlighted: id === highlightedId,
-    highlightColor: highlightColor ,
+    highlightColor: highlightColor,
     highlightBgColor: highlightBgColor
   };
 
@@ -120,13 +104,13 @@ function Nav(props) {
           </div>
         ) : null}
       </NavItemStyled>
-  );
-}
+      );
+      }
 
-compose(
-  withState('collapsed', 'setCollapsed', false),
-  getContext({
+      compose(
+      withState('collapsed', 'setCollapsed', false),
+      getContext({
 
-  })
-)
-export default Nav;
+    })
+      )
+      export default Nav;
