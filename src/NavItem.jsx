@@ -18,6 +18,7 @@ const NavItemStyled = styled.div`
       props.theme.hoverColor ||
       props.theme.highlightColor ||
       "inherit"} !important;
+    
     background: ${props =>
       props.theme.hoverBgColor ||
       props.theme.highlightBgColor ||
