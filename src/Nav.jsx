@@ -1,20 +1,17 @@
 import React, { type HOC } from 'react';
-import { findIcon, findText } from "./util";
+import type { Theme } from "./types";
 
 type callback = (...args: Array<any>) => void;
 
 type Props = {
-  children?: React.Element<*>,
-  highlightColor?: string,
-  highlightBgColor?: string,
-  isHighlighted?: boolean,
   id: string | number,
+  children?: React.Element<*>,
+  theme: Theme,
+  isHighlighted?: boolean,
   onClick?: callback,
   onNavClick?: callback,
   highlightedId?: string | number,
   renderSubNavIndicator?: callback,
-  hoverBgColor?: string,
-  hoverColor?: string,
   expanded?: boolean,
   collapseIndicatorSize?: string
 }
@@ -36,10 +33,7 @@ const setSubNavRef = (subNavEl) => {
 
 function Nav (props) {
   const {
-    hoverBgColor,
-    hoverColor,
-    highlightColor,
-    highlightBgColor,
+    theme,
     children,
     highlightedId,
     onNavClick = identity,
@@ -55,9 +49,6 @@ function Nav (props) {
     setCollapsed(!collapsed), () => {
       onNavClick(id, null);
       onClick(id, null);
-      if (this.subNavEl && !this.s) {
-        this.subNavEl.style.maxHeight = !collapsed ? null : "0px";
-      }
     }
   }
   const childClicked = (childId) => {
@@ -65,17 +56,12 @@ function Nav (props) {
     onNavClick(childId, props.id);
     onClick(childId, props.id);
   }
-  const icon = findIcon(children);
-  const text = findText(children);
 
   const itemProps = {
-    hoverBgColor: hoverBgColor,
-    hoverColor: hoverColor,
+    theme: theme,
     onClick: onNavItemClicked,
     onNavClick,
     isHighlighted: id === highlightedId,
-    highlightColor: highlightColor,
-    highlightBgColor: highlightBgColor
   };
 
   return (
@@ -95,6 +81,9 @@ compose(
     return {
       theme: theme
     }
+  }),
+  withContext({}, (props) => {
+
   })
 )
 export default Nav;

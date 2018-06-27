@@ -17,12 +17,15 @@ const NavItemStyled = styled.div`
 type Props = {
   id: string,
   theme: Theme,
-  onClick: (id: string)  => void
+  onClick: (id: string) => void
 }
+
 const NavItem = (props: Props) => {
-  const { theme, onClick } = props
+  const { id, theme, onClick } = props
   return (
-    <NavItemStyled theme={theme} onClick={() => { onClick(id)}}>
+    <NavItemStyled theme={theme} onClick={() => {
+      onClick(id)
+    }}>
       {props.text}
     </NavItemStyled>
   )
