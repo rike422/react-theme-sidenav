@@ -1,4 +1,4 @@
-import React, { type HOC } from 'react';
+import React, { type HOC } from "react";
 import type { Theme } from "./types";
 
 type callback = (...args: Array<any>) => void;
@@ -14,76 +14,73 @@ type Props = {
   renderSubNavIndicator?: callback,
   expanded?: boolean,
   collapseIndicatorSize?: string
-}
+};
 
 type ContextTypes = {
   highlightColor: string,
   highlightBgColor: string,
   hoverBgColor: string,
   hoverColor: string
-}
+};
 
 const defaultProps = {
   onNavClick: identity,
   collapseIndicatorSize: "0.25em"
-}
-const setSubNavRef = (subNavEl) => {
+};
+const setSubNavRef = subNavEl => {
   this.subNavEl = subNavEl;
-}
+};
 
-function Nav (props) {
+function Nav(props) {
   const {
-    theme,
     children,
-    highlightedId,
+    collapsed,
     onNavClick = identity,
+    onClick,
+    highlightedId,
+    theme,
     identity,
     id,
-    collapsed,
-    setCollapsed,
-    onClick
+    setCollapsed
   } = props;
 
   const onNavItemClicked = () => {
     const onClick = identity;
-    setCollapsed(!collapsed), () => {
-      onNavClick(id, null);
-      onClick(id, null);
-    }
-  }
-  const childClicked = (childId) => {
+    setCollapsed(!collapsed),
+      () => {
+        onNavClick(id, null);
+        onClick(id, null);
+      };
+  };
+  const childClicked = childId => {
     const { onNavClick } = props;
     onNavClick(childId, props.id);
     onClick(childId, props.id);
-  }
+  };
 
   const itemProps = {
     theme: theme,
     onClick: onNavItemClicked,
     onNavClick,
-    isHighlighted: id === highlightedId,
+    isHighlighted: id === highlightedId
   };
 
   return (
     <div>
-      <NavItemStyled {...itemProps}>
-        {...children}
-      </NavItemStyled>
+      <NavItemStyled {...itemProps}>{...children}</NavItemStyled>
     </div>
   );
-
 }
 
 compose(
-  withState('collapsed', 'setCollapsed', false),
-  getContext({}, (props) => {
-    const { theme } = props
+  withState("collapsed", "setCollapsed", false),
+  getContext({}, props => {
+    const { theme, onNavClick } = props;
     return {
-      theme: theme
-    }
+      theme: theme,
+      onNavClick: onNavClick
+    };
   }),
-  withContext({}, (props) => {
-
-  })
-)
+  withContext({}, props => {})
+);
 export default Nav;

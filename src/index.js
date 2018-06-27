@@ -1,6 +1,8 @@
-import SideNav from './SideNav';
+import SideNav from "./SideNav";
 
-export { withRR4 } from './withRR4';
+export { withRR4 } from "./withRR4";
 export { SideNav };
-export { Nav, NavIcon, NavText } from './Nav';
+export { Nav } from "./Nav";
+export { SubNav } from "./SubNav";
+export { NavIcon, NavText } from "./NavItem";
 export default SideNav;

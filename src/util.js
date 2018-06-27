@@ -12,11 +12,6 @@ const findComponent = ComponentToFind => children => {
 
 const findIcon = findComponent(NavIcon);
 const findText = findComponent(NavText);
-const identity = () => {
-};
+const identity = () => {};
 
-export {
-  findComponent,
-  findIcon,
-  findText
-}
+export { findComponent, findIcon, findText };

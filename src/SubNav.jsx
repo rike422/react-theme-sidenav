@@ -1,31 +1,30 @@
-import React, { Children, type HOC } from 'react';
-import styled from 'styled-components'
+import React, { Children, type HOC } from "react";
+import styled from "styled-components";
 import Nav from "./Nav";
 import { NavItem } from "./NavItem";
 
 SubNabWrapper = styled.div`
-  maxHeight: ${(p) => {
-    p.collapsed ? 0 : null
+  maxheight: ${p => {
+    p.collapsed ? 0 : null;
   }};
-  transition: all 0.2s ease-in-out
-`
+  transition: all 0.2s ease-in-out;
+`;
 
-const SubNav = (props) => {
-  const { id, highlightedId, childClicked } = props
+const SubNav = props => {
+  const { id, highlightedId, childClicked, collapsed } = props;
 
   return (
     <SubNabWrapper>
       {Children.toArray(children)
         .filter(child => child.type === Nav && collapsed)
         .map((child, idx) => {
-          const isItemHighlighted =
-            highlightedId === `${id}/${child.props.id}`;
+          const isItemHighlighted = highlightedId === `${id}/${child.props.id}`;
 
           return (
             <NavItem
               key={idx}
-              onClick={(e) => {
-                props.onNavClick()
+              onClick={e => {
+                props.onNavClick();
                 childClicked(`${id}/${child.props.id}`);
               }}
               isHighlighted={isItemHighlighted}
@@ -35,9 +34,7 @@ const SubNav = (props) => {
           );
         })}
     </SubNabWrapper>
-  )
-}
+  );
+};
 
-export {
-  SubNav
-}
+export { SubNav };

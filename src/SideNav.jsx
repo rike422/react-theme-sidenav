@@ -1,5 +1,5 @@
-import React from 'react';
-import { compose, withContext } from 'recompose';
+import React from "react";
+import { compose, withContext } from "recompose";
 
 type ContextTypes = {
   highlightColor?: string,
@@ -15,45 +15,43 @@ type PropTypes = {
   onItemSelection?: (...args) => void
 };
 
-const noop = () => {
-};
+const noop = () => {};
 
-
-function SideNavBase (props: PropTypes) {
+function SideNavBase(props: PropTypes) {
   const { children, setSelected, defaultSelected, selected } = props;
-  return (
-    <div>
-      {...children}
-    </div>
-  );
+  return <div>{...children}</div>;
 }
 
 const SideNav = compose(
-  withState('selected', 'setSelected', ''),
-  withState('defaultSelected', 'setDefaultSelected', ''),
+  withState("selected", "setSelected", ""),
+  withState("defaultSelected", "setDefaultSelected", ""),
   withContext({}, (props: ContextTypes) => {
-      const { defaultSelected, selected, setSelected, theme, onItemSelection } = props
-      const onNavClick = (id: string, parent = null) => {
-        if (defaultSelected) {
-          //lets manage it
-          setSelected(id, () => {
-            onItemSelection(id, parent)
-          });
-        } else {
-          onItemSelection(id, parent)
-        }
-      };
+    const {
+      defaultSelected,
+      selected,
+      setSelected,
+      theme,
+      onItemSelection
+    } = props;
+    const onNavClick = (id: string, parent = null) => {
+      if (defaultSelected) {
+        //lets manage it
+        setSelected(id, () => {
+          onItemSelection(id, parent);
+        });
+      } else {
+        onItemSelection(id, parent);
+      }
+    };
 
-      const currentSelected = (defaultSelected != null) ? defaultSelected : selected
-      return {
-        theme: theme,
-        highlightedId: currentSelected,
-        onNavClick: onNavClick
-      };
-    }
-  ),
-)(SideNavBase)
+    const currentSelected =
+      defaultSelected != null ? defaultSelected : selected;
+    return {
+      theme: theme,
+      highlightedId: currentSelected,
+      onNavClick: onNavClick
+    };
+  })
+)(SideNavBase);
 
-export {
-  SideNav
-}
+export { SideNav };
