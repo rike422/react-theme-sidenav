@@ -1,5 +1,5 @@
 import React from "react";
-import SideNav, { Nav, NavIcon, NavText } from "./index";
+import { SideNav, Nav, NavIcon, NavText } from "./index";
 import { mount } from "enzyme";
 
 describe("SideNav", () => {

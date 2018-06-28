@@ -1,5 +1,5 @@
 import React from "react";
-import { compose, withContext } from "recompose";
+import { compose, withContext, withState } from "recompose";
 
 type ContextTypes = {
   highlightColor?: string,
@@ -15,9 +15,10 @@ type PropTypes = {
   onItemSelection?: (...args) => void
 };
 
-const noop = () => {};
+const noop = () => {
+};
 
-function SideNavBase(props: PropTypes) {
+function SideNavBase (props: PropTypes) {
   const { children, setSelected, defaultSelected, selected } = props;
   return <div>{...children}</div>;
 }

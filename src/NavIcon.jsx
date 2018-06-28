@@ -1,4 +1,5 @@
-import styled from "styled-components/typings/styled-components";
+import React from "react";
+import styled from "styled-components";
 
 const NavIconCont = styled.div`
   vertical-align: middle;

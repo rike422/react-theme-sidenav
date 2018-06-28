@@ -1,9 +1,5 @@
 import React from "react";
 import { render } from "react-dom";
-
-import styled from "styled-components";
-
-import SideNav, { Nav, NavIcon, NavText } from "react-sidenav";
 import SvgIcon from "react-icons-kit";
 import { ic_aspect_ratio } from "react-icons-kit/md/ic_aspect_ratio";
 import { ic_business } from "react-icons-kit/md/ic_business";
@@ -12,7 +8,11 @@ import { ic_format_list_bulleted } from "react-icons-kit/md/ic_format_list_bulle
 import { ic_people } from "react-icons-kit/md/ic_people";
 import { ic_shopping_cart } from "react-icons-kit/md/ic_shopping_cart";
 
-const Icon20 = props => <SvgIcon size={props.size || 20} icon={props.icon} />;
+import { Nav, NavIcon, NavText, SideNav } from "react-sidenav";
+
+import styled from "styled-components";
+
+const Icon20 = props => <SvgIcon size={props.size || 20} icon={props.icon}/>;
 
 const BaseContainer = props => (
   <div
@@ -46,7 +46,7 @@ const SeparatorTitle = props => {
   return (
     <SeparatorTitleContainer>
       {props.children}
-      <hr style={{ border: 0, borderTop: "1px solid #E5E5E5" }} />
+      <hr style={{ border: 0, borderTop: "1px solid #E5E5E5" }}/>
     </SeparatorTitleContainer>
   );
 };
@@ -57,49 +57,49 @@ const BasicSideNav = () => {
       <Title> Basic SideNav </Title>
       <Nav id="dashboard">
         <NavIcon>
-          <Icon20 icon={ic_aspect_ratio} />
+          <Icon20 icon={ic_aspect_ratio}/>
         </NavIcon>
         <NavText> Dashboard </NavText>
       </Nav>
       <Nav id="sales">
         <NavIcon>
-          <Icon20 icon={ic_business} />
+          <Icon20 icon={ic_business}/>
         </NavIcon>
         <NavText> Sales </NavText>
       </Nav>
       <Nav id="products">
         <NavIcon>
-          <Icon20 icon={ic_business_center} />
+          <Icon20 icon={ic_business_center}/>
         </NavIcon>
         <NavText> Products </NavText>
       </Nav>
       <Nav id="customers">
         <NavIcon>
-          <Icon20 icon={ic_people} />
+          <Icon20 icon={ic_people}/>
         </NavIcon>
         <NavText> Customers </NavText>
         <Nav id="dashboard2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_aspect_ratio} />
+            <Icon20 size={16} icon={ic_aspect_ratio}/>
           </NavIcon>
           <NavText> Search </NavText>
         </Nav>
         <Nav id="sales2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_business} />
+            <Icon20 size={16} icon={ic_business}/>
           </NavIcon>
           <NavText> Promoter </NavText>
         </Nav>
         <Nav id="products2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_business_center} />
+            <Icon20 size={16} icon={ic_business_center}/>
           </NavIcon>
           <NavText> Social Medias </NavText>
         </Nav>
       </Nav>
       <Nav id="orders">
         <NavIcon>
-          <Icon20 icon={ic_format_list_bulleted} />
+          <Icon20 icon={ic_format_list_bulleted}/>
         </NavIcon>
         <NavText> Orders </NavText>
       </Nav>
@@ -127,7 +127,7 @@ const BasicSideNavLite = () => {
         return (
           <Nav key={key} id={key}>
             <NavIcon>
-              <Icon20 icon={NavMain[key].icon} />
+              <Icon20 icon={NavMain[key].icon}/>
             </NavIcon>
             <NavText> {NavMain[key].title} </NavText>
           </Nav>
@@ -138,31 +138,31 @@ const BasicSideNavLite = () => {
       </SeparatorTitle>
       <Nav id="customers">
         <NavIcon>
-          <Icon20 icon={ic_people} />
+          <Icon20 icon={ic_people}/>
         </NavIcon>
         <NavText> Customers </NavText>
         <Nav id="dashboard2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_aspect_ratio} />
+            <Icon20 size={16} icon={ic_aspect_ratio}/>
           </NavIcon>
           <NavText> Search </NavText>
         </Nav>
         <Nav id="sales2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_business} />
+            <Icon20 size={16} icon={ic_business}/>
           </NavIcon>
           <NavText> Promote </NavText>
         </Nav>
         <Nav id="products2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_business_center} />
+            <Icon20 size={16} icon={ic_business_center}/>
           </NavIcon>
           <NavText> Social Media </NavText>
         </Nav>
       </Nav>
       <Nav id="sales">
         <NavIcon>
-          <Icon20 icon={ic_business} />
+          <Icon20 icon={ic_business}/>
         </NavIcon>
         <NavText> Sales </NavText>
       </Nav>
@@ -179,23 +179,23 @@ const SideNavWithAlerts = () => {
       defaultSelected="products"
       highlightColor="#FFF"
     >
-      <div />
+      <div/>
       <Nav id="dashboard">
         <NavIcon>
-          <Icon20 icon={ic_aspect_ratio} />
+          <Icon20 icon={ic_aspect_ratio}/>
         </NavIcon>
         <NavText> Dashboard </NavText>
       </Nav>
 
       <Nav id="products">
         <NavIcon>
-          <Icon20 icon={ic_business_center} />
+          <Icon20 icon={ic_business_center}/>
         </NavIcon>
         <NavText> Products </NavText>
       </Nav>
       <Nav id="orders">
         <NavIcon>
-          <Icon20 icon={ic_format_list_bulleted} />
+          <Icon20 icon={ic_format_list_bulleted}/>
         </NavIcon>
         <NavText>
           {" "}
@@ -221,12 +221,12 @@ const SideNavWithAlerts = () => {
 
       <Nav id="customers">
         <NavIcon>
-          <Icon20 icon={ic_people} />
+          <Icon20 icon={ic_people}/>
         </NavIcon>
         <NavText> Customers </NavText>
         <Nav id="dashboard2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_aspect_ratio} />
+            <Icon20 size={16} icon={ic_aspect_ratio}/>
           </NavIcon>
           <NavText> Search </NavText>
         </Nav>
@@ -237,13 +237,13 @@ const SideNavWithAlerts = () => {
           }}
         >
           <NavIcon>
-            <Icon20 size={16} icon={ic_business} />
+            <Icon20 size={16} icon={ic_business}/>
           </NavIcon>
           <NavText> Promote </NavText>
         </Nav>
         <Nav id="products2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_business_center} />
+            <Icon20 size={16} icon={ic_business_center}/>
           </NavIcon>
           <NavText> Social Media </NavText>
         </Nav>
@@ -255,13 +255,13 @@ const SideNavWithAlerts = () => {
         }}
       >
         <NavIcon>
-          <Icon20 icon={ic_business} />
+          <Icon20 icon={ic_business}/>
         </NavIcon>
         <NavText> Sales </NavText>
       </Nav>
       <Nav id="deliveries">
         <NavIcon>
-          <Icon20 icon={ic_shopping_cart} />
+          <Icon20 icon={ic_shopping_cart}/>
         </NavIcon>
         <NavText> Deliveries </NavText>
       </Nav>
@@ -278,23 +278,23 @@ const ControlledNav = () => {
       selected="customers/sales2"
       highlightColor="#FFF"
     >
-      <div />
+      <div/>
       <Nav id="dashboard">
         <NavIcon>
-          <Icon20 icon={ic_aspect_ratio} />
+          <Icon20 icon={ic_aspect_ratio}/>
         </NavIcon>
         <NavText> Dashboard </NavText>
       </Nav>
 
       <Nav id="products">
         <NavIcon>
-          <Icon20 icon={ic_business_center} />
+          <Icon20 icon={ic_business_center}/>
         </NavIcon>
         <NavText> Products </NavText>
       </Nav>
       <Nav id="orders">
         <NavIcon>
-          <Icon20 icon={ic_format_list_bulleted} />
+          <Icon20 icon={ic_format_list_bulleted}/>
         </NavIcon>
         <NavText>
           {" "}
@@ -320,12 +320,12 @@ const ControlledNav = () => {
 
       <Nav id="customers" expanded>
         <NavIcon>
-          <Icon20 icon={ic_people} />
+          <Icon20 icon={ic_people}/>
         </NavIcon>
         <NavText> Customers </NavText>
         <Nav id="dashboard2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_aspect_ratio} />
+            <Icon20 size={16} icon={ic_aspect_ratio}/>
           </NavIcon>
           <NavText> Search </NavText>
         </Nav>
@@ -336,13 +336,13 @@ const ControlledNav = () => {
           }}
         >
           <NavIcon>
-            <Icon20 size={16} icon={ic_business} />
+            <Icon20 size={16} icon={ic_business}/>
           </NavIcon>
           <NavText> Promote </NavText>
         </Nav>
         <Nav id="products2">
           <NavIcon>
-            <Icon20 size={16} icon={ic_business_center} />
+            <Icon20 size={16} icon={ic_business_center}/>
           </NavIcon>
           <NavText> Social Media </NavText>
         </Nav>
@@ -354,13 +354,13 @@ const ControlledNav = () => {
         }}
       >
         <NavIcon>
-          <Icon20 icon={ic_business} />
+          <Icon20 icon={ic_business}/>
         </NavIcon>
         <NavText> Sales </NavText>
       </Nav>
       <Nav id="deliveries">
         <NavIcon>
-          <Icon20 icon={ic_shopping_cart} />
+          <Icon20 icon={ic_shopping_cart}/>
         </NavIcon>
         <NavText> Deliveries </NavText>
       </Nav>
@@ -369,13 +369,13 @@ const ControlledNav = () => {
 };
 
 class X extends React.Component {
-  render() {
+  render () {
     return (
       <div style={{ display: "flex" }}>
         <BaseContainer style={{ background: "#2c3e50", color: "#FFF" }}>
-          <BasicSideNav />
+          <BasicSideNav/>
         </BaseContainer>
-        <Separator />
+        <Separator/>
         <BaseContainer
           style={{
             background: "#FFF",
@@ -383,9 +383,9 @@ class X extends React.Component {
             boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
           }}
         >
-          <BasicSideNavLite />
+          <BasicSideNavLite/>
         </BaseContainer>
-        <Separator />
+        <Separator/>
         <BaseContainer
           style={{
             fontSize: 12,
@@ -409,9 +409,9 @@ class X extends React.Component {
               <div style={{ fontSize: 11 }}> Ninja Developer</div>
             </div>
           </div>
-          <SideNavWithAlerts />
+          <SideNavWithAlerts/>
         </BaseContainer>
-        <Separator />
+        <Separator/>
         <BaseContainer
           style={{
             background: "#FFF",
@@ -419,12 +419,12 @@ class X extends React.Component {
             boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
           }}
         >
-          <ControlledNav />
+          <ControlledNav/>
         </BaseContainer>
-        <Separator />
+        <Separator/>
       </div>
     );
   }
 }
 
-render(<X />, document.getElementById("app"));
+render(<X/>, document.getElementById("app"));

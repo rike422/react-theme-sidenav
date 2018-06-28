@@ -1,8 +1,14 @@
-import SideNav from "./SideNav";
 
-export { withRR4 } from "./withRR4";
-export { SideNav };
-export { Nav } from "./Nav";
-export { SubNav } from "./SubNav";
-export { NavIcon, NavText } from "./NavItem";
-export default SideNav;
+import { withRR4 } from "./withRR4";
+import { SideNav } from './SideNav.jsx';
+import { Nav } from "./Nav.jsx";
+import { SubNav } from "./SubNav.jsx";
+import { NavIcon, NavText } from "./NavItem.jsx";
+export default {
+  SideNav,
+  withRR4,
+  Nav,
+  SubNav,
+  NavText,
+  NavIcon
+};

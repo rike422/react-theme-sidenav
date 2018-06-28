@@ -1,9 +1,9 @@
 import React, { Children, type HOC } from "react";
 import styled from "styled-components";
-import Nav from "./Nav";
+import { Nav } from "./Nav";
 import { NavItem } from "./NavItem";
 
-SubNabWrapper = styled.div`
+const SubNabWrapper = styled.div`
   maxheight: ${p => {
     p.collapsed ? 0 : null;
   }};

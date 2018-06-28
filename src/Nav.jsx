@@ -1,4 +1,5 @@
 import React, { type HOC } from "react";
+import { compose, getContext, withContext, withState } from "recompose";
 import type { Theme } from "./types";
 
 type callback = (...args: Array<any>) => void;
@@ -23,19 +24,19 @@ type ContextTypes = {
   hoverColor: string
 };
 
-const defaultProps = {
-  onNavClick: identity,
-  collapseIndicatorSize: "0.25em"
-};
+// const defaultProps = {
+//   onNavClick: identity,
+//   collapseIndicatorSize: "0.25em"
+//};
 const setSubNavRef = subNavEl => {
   this.subNavEl = subNavEl;
 };
 
-function Nav(props) {
+function Nav (props) {
   const {
     children,
     collapsed,
-    onNavClick = identity,
+    onNavClick,
     onClick,
     highlightedId,
     theme,
@@ -81,6 +82,7 @@ compose(
       onNavClick: onNavClick
     };
   }),
-  withContext({}, props => {})
+  withContext({}, props => {
+  })
 );
 export default Nav;
