@@ -1,5 +1,7 @@
+// @flow
 import React from "react";
-import { compose, withContext, withState } from "recompose";
+import { compose, withContext, withState, withProps } from "recompose";
+import type { Theme } from "./types";
 
 type ContextTypes = {
   highlightColor?: string,
@@ -18,12 +20,29 @@ type PropTypes = {
 const noop = () => {
 };
 
+const defaultTheme: Theme = {
+  highlightColor: '#E91E63',
+  highlightBgColor: '#00bcd4',
+  hoverBgColor: "#2c3e50",
+  hoverColor: "#f1f1f1f1"
+}
+
 function SideNavBase (props: PropTypes) {
   const { children, setSelected, defaultSelected, selected } = props;
   return <div>{...children}</div>;
 }
 
+
 const SideNav = compose(
+  withProps((props) => {
+    const { theme } = props
+
+    const defaultProps = {
+      theme: defaultTheme
+    }
+
+    return Object.assign({}, defaultProps, props)
+  }),
   withState("selected", "setSelected", ""),
   withState("defaultSelected", "setDefaultSelected", ""),
   withContext({}, (props: ContextTypes) => {

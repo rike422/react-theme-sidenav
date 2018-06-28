@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Nav, NavIcon, NavText } from './index';
+import { Nav, NavIcon, NavText } from '../index';
 import { mount } from 'enzyme';
 
 describe.only('Nav', () => {
@@ -34,10 +34,6 @@ describe.only('Nav', () => {
       <Nav id='nav'>
         <NavIcon><span className='iconCls'>icon</span></NavIcon>
         <NavText><span className='textCls'>text</span></NavText>
-        <Nav id='subNav'>
-          <NavIcon><span className='iconCls'>icon</span></NavIcon>
-          <NavText><span className='textCls'>text</span></NavText>
-        </Nav>
       </Nav>
     );
     wrapper.find('.__rsnav___item').simulate('click');

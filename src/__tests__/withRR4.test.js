@@ -1,9 +1,9 @@
 import React from "react";
 
 import { MemoryRouter, Route } from "react-router";
-import { Nav, NavText, withRR4 } from "./index";
+import { Nav, NavText, withRR4 } from "../index";
 import { mount } from "enzyme";
-import { pathToArray } from "./withRR4";
+import { pathToArray } from "../withRR4";
 
 const SideNav = withRR4();
 

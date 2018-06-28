@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import styled from "styled-components";
 import { NavIcon } from "./NavIcon";
@@ -28,9 +29,10 @@ const NavItemStyled = styled.div`
 
 type Props = {
   id: string,
-  theme?: Theme,
+  isHighlighted: boolean,
+  theme: Theme,
   children?: React.Element<*>,
-  onClick?: (id: string) => void
+  onClick: (id: string) => void
 };
 
 const NavItem = (props: Props) => {

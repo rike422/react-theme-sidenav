@@ -1,5 +1,8 @@
+// @flow
 import React, { type HOC } from "react";
 import { compose, getContext, withContext, withState } from "recompose";
+import { NavItem } from './NavItem'
+
 import type { Theme } from "./types";
 
 type callback = (...args: Array<any>) => void;
@@ -53,23 +56,22 @@ function Nav (props) {
         onClick(id, null);
       };
   };
-  const childClicked = childId => {
-    const { onNavClick } = props;
-    onNavClick(childId, props.id);
-    onClick(childId, props.id);
-  };
+  // const childClicked = childId => {
+  //   const { onNavClick } = props;
+  //   onNavClick(childId, props.id);
+  //   onClick(childId, props.id);
+  // };
 
   const itemProps = {
     theme: theme,
     onClick: onNavItemClicked,
-    onNavClick,
     isHighlighted: id === highlightedId
   };
 
   return (
-    <div>
-      <NavItemStyled {...itemProps}>{...children}</NavItemStyled>
-    </div>
+    <NavItem  {...itemProps}>
+      {children}
+    </NavItem>
   );
 }
 
@@ -85,4 +87,4 @@ compose(
   withContext({}, props => {
   })
 );
-export default Nav;
+export { Nav };
