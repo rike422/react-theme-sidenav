@@ -9,15 +9,11 @@ const NavTextCont = styled.div`
 `;
 
 const NavText = (props: Props) => {
-  const { id, theme, onClick } = props;
+  const { id, children } = props;
   return (
     <NavTextCont
-      theme={theme}
-      onClick={() => {
-        onClick(id);
-      }}
     >
-      {props.text}
+      {children}
     </NavTextCont>
   );
 };

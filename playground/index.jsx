@@ -8,7 +8,7 @@ import { ic_format_list_bulleted } from "react-icons-kit/md/ic_format_list_bulle
 import { ic_people } from "react-icons-kit/md/ic_people";
 import { ic_shopping_cart } from "react-icons-kit/md/ic_shopping_cart";
 
-import { Nav, NavIcon, NavText, SideNav } from "react-sidenav";
+import { Nav, NavIcon, NavText, SideNav, SubNav } from "react-sidenav";
 
 import styled from "styled-components";
 
@@ -73,30 +73,30 @@ const BasicSideNav = () => {
         </NavIcon>
         <NavText> Products </NavText>
       </Nav>
-      <Nav id="customers">
-        <NavIcon>
-          <Icon20 icon={ic_people}/>
-        </NavIcon>
-        <NavText> Customers </NavText>
-        <Nav id="dashboard2">
-          <NavIcon>
-            <Icon20 size={16} icon={ic_aspect_ratio}/>
-          </NavIcon>
-          <NavText> Search </NavText>
-        </Nav>
-        <Nav id="sales2">
-          <NavIcon>
-            <Icon20 size={16} icon={ic_business}/>
-          </NavIcon>
-          <NavText> Promoter </NavText>
-        </Nav>
-        <Nav id="products2">
-          <NavIcon>
-            <Icon20 size={16} icon={ic_business_center}/>
-          </NavIcon>
-          <NavText> Social Medias </NavText>
-        </Nav>
-      </Nav>
+       <SubNav id="customers">
+         <NavIcon>
+           <Icon20 icon={ic_people}/>
+         </NavIcon>
+         <NavText> Customers </NavText>
+         <Nav id="dashboard2">
+           <NavIcon>
+             <Icon20 size={16} icon={ic_aspect_ratio}/>
+           </NavIcon>
+           <NavText> Search </NavText>
+         </Nav>
+         <Nav id="sales2">
+           <NavIcon>
+             <Icon20 size={16} icon={ic_business}/>
+           </NavIcon>
+           <NavText> Promoter </NavText>
+         </Nav>
+         <Nav id="products2">
+           <NavIcon>
+             <Icon20 size={16} icon={ic_business_center}/>
+           </NavIcon>
+           <NavText> Social Medias </NavText>
+         </Nav>
+       </SubNav>
       <Nav id="orders">
         <NavIcon>
           <Icon20 icon={ic_format_list_bulleted}/>
@@ -136,7 +136,7 @@ const BasicSideNavLite = () => {
       <SeparatorTitle>
         <div> Customers and Sales</div>
       </SeparatorTitle>
-      <Nav id="customers">
+      <SubNav id="customers">
         <NavIcon>
           <Icon20 icon={ic_people}/>
         </NavIcon>
@@ -159,7 +159,7 @@ const BasicSideNavLite = () => {
           </NavIcon>
           <NavText> Social Media </NavText>
         </Nav>
-      </Nav>
+      </SubNav>
       <Nav id="sales">
         <NavIcon>
           <Icon20 icon={ic_business}/>
@@ -219,7 +219,7 @@ const SideNavWithAlerts = () => {
         </NavText>
       </Nav>
 
-      <Nav id="customers">
+      <SubNav id="customers">
         <NavIcon>
           <Icon20 icon={ic_people}/>
         </NavIcon>
@@ -247,7 +247,7 @@ const SideNavWithAlerts = () => {
           </NavIcon>
           <NavText> Social Media </NavText>
         </Nav>
-      </Nav>
+      </SubNav>
       <Nav
         id="sales"
         onNavClick={() => {
@@ -318,7 +318,7 @@ const ControlledNav = () => {
         </NavText>
       </Nav>
 
-      <Nav id="customers" expanded>
+      <SubNav id="customers" expanded>
         <NavIcon>
           <Icon20 icon={ic_people}/>
         </NavIcon>
@@ -346,7 +346,7 @@ const ControlledNav = () => {
           </NavIcon>
           <NavText> Social Media </NavText>
         </Nav>
-      </Nav>
+      </SubNav>
       <Nav
         id="sales"
         onNavClick={() => {

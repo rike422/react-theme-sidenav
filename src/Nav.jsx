@@ -1,6 +1,7 @@
 // @flow
 import React, { type HOC } from "react";
 import { compose, withState } from "recompose";
+import styled from "styled-components";
 import { NavItem } from './NavItem'
 import { SideNavConsumer, type SideNavContextType } from "./SideNavContext";
 
@@ -26,7 +27,7 @@ type Props = {
 //   collapseIndicatorSize: "0.25em"
 //};
 
-function Nav (props) {
+const NavBase = (props) => {
   const {
     children,
     collapsed,
@@ -44,7 +45,7 @@ function Nav (props) {
   //   onClick(childId, props.id);
   // };
 
-  const onNavItemClicked = (onNavClicke) => {
+  const onNavItemClicked = (onNavClick) => {
     return () => {
       const onClick = identity;
       setCollapsed(!collapsed, () => {
@@ -65,13 +66,13 @@ function Nav (props) {
           </NavItem>
         )
       }}
-      )}
     </SideNavConsumer>
   );
 }
 
-compose(
+const Nav = compose(
   withState("collapsed", "setCollapsed", false)
-)
-;
+)(NavBase)
+
+
 export { Nav };

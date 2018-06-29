@@ -12,8 +12,8 @@ const SideNavContext = createContext({
   theme: defaultTheme
 })
 
-const { Provider: SideNavProvider, Consumer: SideNavConsumer } = SideNavContext
-
+const SideNavConsumer = SideNavContext.Consumer
+const SideNavProvider = SideNavContext.Provider
 
 export type SideNavContextType = {
   theme: Theme,

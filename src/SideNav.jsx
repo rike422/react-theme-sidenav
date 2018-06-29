@@ -4,7 +4,6 @@ import { compose, withState } from "recompose";
 import { type SideNavContextType, SideNavProvider } from "./SideNavContext";
 
 type PropTypes = {
-  ...contextTypes,
   selected: string,
   defaultSelected: string,
   onItemSelection?: (...args) => void
@@ -13,24 +12,26 @@ type PropTypes = {
 const noop = () => {
 };
 
-
 function SideNavBase (props: PropTypes) {
   const {
     defaultSelected,
     selected,
     setSelected,
     theme,
-    onItemSelection
+    onItemSelection,
+    children
   } = props;
+
   const onNavClick = (id: string, parent = null) => {
-    if (defaultSelected) {
-      //lets manage it
-      setSelected(id, () => {
-        onItemSelection(id, parent);
-      });
-    } else {
-      onItemSelection(id, parent);
-    }
+    setSelected(id, () => {
+      //onItemSelection(id, parent);
+    });
+    //if (defaultSelected) {
+    //  //lets manage it
+    //
+    //} else {
+    //  //onItemSelection(id, parent);
+    //}
   };
 
   const currentSelected =
@@ -41,12 +42,12 @@ function SideNavBase (props: PropTypes) {
     highlightedId: currentSelected,
     onNavClick: onNavClick
   };
+
   return (
-    <div>
-      <SideNavProvider value={context}>
-        {...children}
-      </SideNavProvider>
-    </div>);
+    <SideNavProvider value={context}>
+      {children}
+    </SideNavProvider>
+  );
 }
 
 const SideNav = compose(

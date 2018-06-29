@@ -40,9 +40,10 @@ const NavItem = (props: Props) => {
   const onItemClick = e => {
     onClick(id);
   };
+
   return (
     <NavItemStyled theme={theme} onClick={onItemClick}>
-      {...children}
+      {children}
     </NavItemStyled>
   );
 };

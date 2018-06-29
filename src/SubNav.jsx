@@ -1,38 +1,34 @@
-import React, { Children, type HOC } from "react";
+import React, { type HOC } from "react";
 import styled from "styled-components";
-import { Nav } from "./Nav";
-import { NavItem } from "./NavItem";
+import { SideNavConsumer, type SideNavContextType, SideNavProvider } from "./SideNavContext";
 
 const SubNabWrapper = styled.div`
   maxheight: ${p => {
-    p.collapsed ? 0 : null;
-  }};
+  p.collapsed ? 0 : null;
+}};
   transition: all 0.2s ease-in-out;
 `;
 
 const SubNav = props => {
-  const { id, highlightedId, childClicked, collapsed } = props;
+  const { id, highlightedId, childClicked, collapsed, children } = props;
 
   return (
     <SubNabWrapper>
-      {Children.toArray(children)
-        .filter(child => child.type === Nav && collapsed)
-        .map((child, idx) => {
-          const isItemHighlighted = highlightedId === `${id}/${child.props.id}`;
-
+      <SideNavConsumer>
+        {(context: SideNavContextType) => {
+          const onClick = (childId) => {
+            context.onNavClick(`${id}/${childId}`)
+          }
+          const newContext = Object.assign({}, context, {
+            onNavClick: onClick
+          })
           return (
-            <NavItem
-              key={idx}
-              onClick={e => {
-                props.onNavClick();
-                childClicked(`${id}/${child.props.id}`);
-              }}
-              isHighlighted={isItemHighlighted}
-            >
-              {...children}
-            </NavItem>
-          );
-        })}
+            <SideNavProvider value={newContext}>
+              {children}
+            </SideNavProvider>
+          )
+        }}
+      </SideNavConsumer>
     </SubNabWrapper>
   );
 };
