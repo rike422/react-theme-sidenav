@@ -9,7 +9,8 @@ const defaultTheme: Theme = {
 }
 
 const SideNavContext = createContext({
-  theme: defaultTheme
+  theme: defaultTheme,
+  subNav: false
 })
 
 const SideNavConsumer = SideNavContext.Consumer
@@ -18,7 +19,8 @@ const SideNavProvider = SideNavContext.Provider
 export type SideNavContextType = {
   theme: Theme,
   highlightedId: string,
-  onNavClick: (e: string) => void
+  onNavClick: (e: string) => void,
+  subNav: boolean
 }
 
 export {

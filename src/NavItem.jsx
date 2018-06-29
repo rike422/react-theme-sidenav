@@ -5,9 +5,10 @@ import { NavIcon } from "./NavIcon";
 import { NavText } from "./NavText";
 
 import { type Theme } from "./types";
+import { SideNavConsumer, type SideNavContextType } from "./SideNavContext";
 
 const NavItemStyled = styled.div`
-  padding: 8px 12px;
+  padding: ${p => (p.subNav) ? '8px 0px 0px 0px;' : "8px 12px;" }
   cursor: pointer;
   position: relative;
   background: ${props =>
@@ -36,15 +37,22 @@ type Props = {
 };
 
 const NavItem = (props: Props) => {
-  const { id, theme, onClick, children } = props;
-  const onItemClick = e => {
-    onClick(id);
-  };
+  const { id, children } = props;
 
   return (
-    <NavItemStyled theme={theme} onClick={onItemClick}>
-      {children}
-    </NavItemStyled>
+    <SideNavConsumer>
+      {(context: SideNavContextType ) => {
+        const { theme, onNavClick, subNav } = context;
+        const onItemClick = e => {
+          onNavClick(id);
+        };
+        return(
+          <NavItemStyled onClick={onItemClick} theme={theme} subNav={subNav}>
+            {children}
+          </NavItemStyled>
+        )
+      }}
+    </SideNavConsumer>
   );
 };
 
