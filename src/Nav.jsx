@@ -1,7 +1,8 @@
 // @flow
 import React, { type HOC } from "react";
-import { compose, getContext, withContext, withState } from "recompose";
+import { compose, withState } from "recompose";
 import { NavItem } from './NavItem'
+import { SideNavConsumer, type SideNavContextType } from "./SideNavContext";
 
 import type { Theme } from "./types";
 
@@ -20,27 +21,15 @@ type Props = {
   collapseIndicatorSize?: string
 };
 
-type ContextTypes = {
-  highlightColor: string,
-  highlightBgColor: string,
-  hoverBgColor: string,
-  hoverColor: string
-};
-
 // const defaultProps = {
 //   onNavClick: identity,
 //   collapseIndicatorSize: "0.25em"
 //};
-const setSubNavRef = subNavEl => {
-  this.subNavEl = subNavEl;
-};
 
 function Nav (props) {
   const {
     children,
     collapsed,
-    onNavClick,
-    onClick,
     highlightedId,
     theme,
     identity,
@@ -48,43 +37,41 @@ function Nav (props) {
     setCollapsed
   } = props;
 
-  const onNavItemClicked = () => {
-    const onClick = identity;
-    setCollapsed(!collapsed),
-      () => {
-        onNavClick(id, null);
-        onClick(id, null);
-      };
-  };
+
   // const childClicked = childId => {
   //   const { onNavClick } = props;
   //   onNavClick(childId, props.id);
   //   onClick(childId, props.id);
   // };
 
-  const itemProps = {
-    theme: theme,
-    onClick: onNavItemClicked,
-    isHighlighted: id === highlightedId
+  const onNavItemClicked = (onNavClicke) => {
+    return () => {
+      const onClick = identity;
+      setCollapsed(!collapsed, () => {
+        onNavClick(id, null);
+      })
+    }
   };
 
   return (
-    <NavItem  {...itemProps}>
-      {children}
-    </NavItem>
+    <SideNavConsumer>
+      {(context: SideNavContextType) => {
+        const { theme, onNavClick, highlightedId } = context
+        const clicked = onNavItemClicked(onNavClick)
+        const isHighlighted = id === highlightedId
+        return (
+          <NavItem onClick={clicked} theme={theme} isHighlighted={isHighlighted}>
+            {children}
+          </NavItem>
+        )
+      }}
+      )}
+    </SideNavConsumer>
   );
 }
 
 compose(
-  withState("collapsed", "setCollapsed", false),
-  getContext({}, props => {
-    const { theme, onNavClick } = props;
-    return {
-      theme: theme,
-      onNavClick: onNavClick
-    };
-  }),
-  withContext({}, props => {
-  })
-);
+  withState("collapsed", "setCollapsed", false)
+)
+;
 export { Nav };
