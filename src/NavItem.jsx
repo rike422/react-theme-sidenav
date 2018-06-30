@@ -37,7 +37,7 @@ type Props = {
 };
 
 const NavItem = (props: Props) => {
-  const { id, children, onClick, theme, subNav} = props;
+  const { children, onClick, theme, subNav} = props;
   return (
     <NavItemStyled onClick={onClick} theme={theme} subNav={subNav}>
       {children}

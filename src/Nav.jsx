@@ -21,7 +21,6 @@ type Props = {
   expanded?: boolean,
   collapseIndicatorSize?: string
 };
-
 // const defaultProps = {
 //   onNavClick: identity,
 //   collapseIndicatorSize: "0.25em"
@@ -32,7 +31,6 @@ const NavBase = (props) => {
     children,
     id,
   } = props;
-
 
   // const childClicked = childId => {
   //   const { onNavClick } = props;

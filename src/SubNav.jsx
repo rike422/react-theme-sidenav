@@ -4,10 +4,22 @@ import styled from "styled-components";
 import { SideNavConsumer, type SideNavContextType, SideNavProvider } from "./SideNavContext";
 
 const SubNabWrapper = styled.div`
-  maxheight: ${p => {
-  p.collapsed ? 0 : null;
+  max-height: ${p => {
+  console.table(p)
+  return p.collapsed ? 0 : null;
 }};
-  padding: 8px 12px;
+  cursor: pointer;
+  position: relative;
+  background: ${props =>
+  props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
+  color: ${props =>
+  props.isHighlighted ? props.theme.highlightColor : "inherit"};
+
+  transition: all 0.2s ease-in-out;
+`;
+
+const SubNabHeader = styled.div`
+ padding: 8px 12px;
   cursor: pointer;
   position: relative;
   background: ${props =>
@@ -25,15 +37,10 @@ const SubNabWrapper = styled.div`
   props.theme.highlightBgColor ||
   "inherit"} !important;
   }
-  transition: all 0.2s ease-in-out;
-`;
-
-
+`
 const SubNavBase = props => {
   const { id, collapsed, setCollapsed, children } = props;
-
   const toggle = () => {
-    console.log("toggle")
     setCollapsed(!collapsed)
   }
 
@@ -55,11 +62,13 @@ const SubNavBase = props => {
 
         return (
           <SideNavProvider value={newContext}>
-            <SubNabWrapper onClick={toggle} collapsed={collapsed} theme={context.theme}>
+            <SubNabHeader onClick={toggle} theme={newContext.theme}>
               {icon}
               {title}
+            </SubNabHeader>
+            <SubNabWrapper collapsed={collapsed} theme={newContext.theme}>
+              {arrayChildren}
             </SubNabWrapper>
-            {arrayChildren}
           </SideNavProvider>
         )
       }}

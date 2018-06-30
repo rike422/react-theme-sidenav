@@ -8,7 +8,7 @@ const defaultTheme: Theme = {
 }
 
 const mergeTheme = (theme: Theme): Theme => {
-  Object.assign({}, defaultTheme, theme)
+  return Object.assign({}, defaultTheme, theme)
 }
 export {
   defaultTheme,
