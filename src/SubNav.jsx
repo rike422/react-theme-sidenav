@@ -2,6 +2,7 @@ import React, { type HOC } from "react";
 import { compose, withState } from "recompose";
 import styled from "styled-components";
 import { SideNavConsumer, type SideNavContextType, SideNavProvider } from "./SideNavContext";
+import { renderSubNavIndicator } from "./CollapsedIndicator";
 
 const SubNabWrapper = styled.div`
   max-height: ${p => {
@@ -65,6 +66,15 @@ const SubNavBase = props => {
             <SubNabHeader onClick={toggle} theme={newContext.theme}>
               {icon}
               {title}
+              <div
+                style={{
+                  position: 'absolute',
+                  right: '16px',
+                  bottom: '4px'
+                }}
+              >
+                {renderSubNavIndicator(props)}{' '}
+              </div>
             </SubNabHeader>
             <SubNabWrapper collapsed={collapsed} theme={newContext.theme}>
               {arrayChildren}

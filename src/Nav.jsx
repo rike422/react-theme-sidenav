@@ -32,12 +32,6 @@ const NavBase = (props) => {
     id,
   } = props;
 
-  // const childClicked = childId => {
-  //   const { onNavClick } = props;
-  //   onNavClick(childId, props.id);
-  //   onClick(childId, props.id);
-  // };
-
   const onNavItemClicked = (onNavClick) => {
     return () => {
       onNavClick(id, null);
