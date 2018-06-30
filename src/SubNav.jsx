@@ -5,17 +5,14 @@ import { SideNavConsumer, type SideNavContextType, SideNavProvider } from "./Sid
 import { renderSubNavIndicator } from "./CollapsedIndicator";
 
 const SubNabWrapper = styled.div`
-  max-height: ${p => {
-  console.table(p)
-  return p.collapsed ? 0 : null;
-}};
+  max-height: ${p => { return p.collapsed ? 0 : "100%" }};
+  overflow-y: hidden;
   cursor: pointer;
   position: relative;
   background: ${props =>
   props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
   color: ${props =>
   props.isHighlighted ? props.theme.highlightColor : "inherit"};
-
   transition: all 0.2s ease-in-out;
 `;
 

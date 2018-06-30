@@ -1,6 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
+const Icon = styled.svg`
+    width: ${p => p.collapseIndicatorSize || "15px" }
+    height: ${p => p.collapseIndicatorSize || "15px" }
+		> path {
+			fill: none;
+			stroke: #aaa;
+			stroke-linecap: round;
+			stroke-width: 2;
+			stroke-dasharray: 29 40;
+			transition: stroke-dashoffset .3s;
+			stroke-dashoffset: ${p => !p.collapsed ? -15 : null}
+		}
+`
 const CollapsedIndicator = styled.div`
   &:before {
     border-style: solid;
@@ -27,8 +40,13 @@ const renderSubNavIndicator = props => {
     return subNavInd || null;
   }
   return (
-    <CollapsedIndicator collapsed={collapsed} size={collapseIndicatorSize} />
+    <Icon viewBox="0 0 26 26" collapsed={collapsed} collapseIndicatorSize={collapseIndicatorSize}>
+      <path d="M11,1 L21,11 L11,21 L1,11">
+
+      </path>
+    </Icon>
   );
 };
+
 
 export { CollapsedIndicator, renderSubNavIndicator };
