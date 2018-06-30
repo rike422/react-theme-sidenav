@@ -30,12 +30,7 @@ type Props = {
 const NavBase = (props) => {
   const {
     children,
-    collapsed,
-    highlightedId,
-    theme,
-    identity,
     id,
-    setCollapsed
   } = props;
 
 
@@ -47,21 +42,18 @@ const NavBase = (props) => {
 
   const onNavItemClicked = (onNavClick) => {
     return () => {
-      const onClick = identity;
-      setCollapsed(!collapsed, () => {
-        onNavClick(id, null);
-      })
+      onNavClick(id, null);
     }
   };
 
   return (
     <SideNavConsumer>
       {(context: SideNavContextType) => {
-        const { theme, onNavClick, highlightedId } = context
+        const { theme, onNavClick, highlightedId, subNav } = context
         const clicked = onNavItemClicked(onNavClick)
         const isHighlighted = id === highlightedId
         return (
-          <NavItem onClick={clicked} theme={theme} isHighlighted={isHighlighted}>
+          <NavItem onClick={clicked} theme={theme} isHighlighted={isHighlighted} subNav={subNav}>
             {children}
           </NavItem>
         )

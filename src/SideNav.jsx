@@ -2,6 +2,7 @@
 import React from "react";
 import { compose, withState } from "recompose";
 import { type SideNavContextType, SideNavProvider } from "./SideNavContext";
+import { mergeTheme } from "./theme";
 
 type PropTypes = {
   selected: string,
@@ -18,11 +19,11 @@ function SideNavBase (props: PropTypes) {
     selected,
     setSelected,
     theme,
-    onItemSelection,
     children
   } = props;
 
-  const onNavClick = (id: string, parent = null) => {
+  const onNavClick = (id: string) => {
+    console.log(id)
     setSelected(id, () => {
       //onItemSelection(id, parent);
     });
@@ -38,9 +39,9 @@ function SideNavBase (props: PropTypes) {
     defaultSelected != null ? defaultSelected : selected;
 
   const context: SideNavContextType = {
-    theme: theme,
     highlightedId: currentSelected,
-    onNavClick: onNavClick
+    onNavClick: onNavClick,
+    theme: mergeTheme(theme || {})
   };
 
   return (

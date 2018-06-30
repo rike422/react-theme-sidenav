@@ -8,23 +8,23 @@ import { type Theme } from "./types";
 import { SideNavConsumer, type SideNavContextType } from "./SideNavContext";
 
 const NavItemStyled = styled.div`
-  padding: ${p => (p.subNav) ? '8px 0px 0px 0px;' : "8px 12px;" }
+  padding: 8px 12px;
   cursor: pointer;
   position: relative;
   background: ${props =>
-    props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
+  props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
   color: ${props =>
-    props.isHighlighted ? props.theme.highlightColor : "inherit"};
+  props.isHighlighted ? props.theme.highlightColor : "inherit"};
   &:hover {
     color: ${props =>
-      props.theme.hoverColor ||
-      props.theme.highlightColor ||
-      "inherit"} !important;
+  props.theme.hoverColor ||
+  props.theme.highlightColor ||
+  "inherit"} !important;
     
     background: ${props =>
-      props.theme.hoverBgColor ||
-      props.theme.highlightBgColor ||
-      "inherit"} !important;
+  props.theme.hoverBgColor ||
+  props.theme.highlightBgColor ||
+  "inherit"} !important;
   }
 `;
 
@@ -37,23 +37,12 @@ type Props = {
 };
 
 const NavItem = (props: Props) => {
-  const { id, children } = props;
-
+  const { id, children, onClick, theme, subNav} = props;
   return (
-    <SideNavConsumer>
-      {(context: SideNavContextType ) => {
-        const { theme, onNavClick, subNav } = context;
-        const onItemClick = e => {
-          onNavClick(id);
-        };
-        return(
-          <NavItemStyled onClick={onItemClick} theme={theme} subNav={subNav}>
-            {children}
-          </NavItemStyled>
-        )
-      }}
-    </SideNavConsumer>
-  );
+    <NavItemStyled onClick={onClick} theme={theme} subNav={subNav}>
+      {children}
+    </NavItemStyled>
+  )
 };
 
 export { NavItem, NavIcon, NavText };

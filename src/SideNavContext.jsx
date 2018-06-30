@@ -1,12 +1,6 @@
 import React, { createContext } from "react";
 import type { Theme } from "./types";
-
-const defaultTheme: Theme = {
-  highlightColor: '#E91E63',
-  highlightBgColor: '#00bcd4',
-  hoverBgColor: "#2c3e50",
-  hoverColor: "#f1f1f1f1"
-}
+import { defaultTheme } from "./theme";
 
 const SideNavContext = createContext({
   theme: defaultTheme,

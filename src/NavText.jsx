@@ -8,7 +8,11 @@ const NavTextCont = styled.div`
   padding-right: 16px;
 `;
 
-const NavText = (props: Props) => {
+type PropTypes = {
+  id: string,
+  children: React.Element<*>
+}
+const NavText = (props: PropTypes) => {
   const { id, children } = props;
   return (
     <NavTextCont

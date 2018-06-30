@@ -5,8 +5,8 @@ import { SideNavConsumer, type SideNavContextType, SideNavProvider } from "./Sid
 
 const SubNabWrapper = styled.div`
   maxheight: ${p => {
-    p.collapsed ? 0 : null;
-  }};
+  p.collapsed ? 0 : null;
+}};
   padding: 8px 12px;
   cursor: pointer;
   position: relative;
@@ -30,27 +30,40 @@ const SubNabWrapper = styled.div`
 
 
 const SubNavBase = props => {
-  const { id, highlightedId, childClicked, collapsed, children } = props;
+  const { id, collapsed, setCollapsed, children } = props;
 
+  const toggle = () => {
+    console.log("toggle")
+    setCollapsed(!collapsed)
+  }
+
+  const arrayChildren = React.Children.toArray(children)
+  const iconIndex = arrayChildren.findIndex(c => c.type.name == 'NavIcon')
+  const icon = arrayChildren.splice(iconIndex, 1)
+  const textIndex = arrayChildren.findIndex(c => c.type.name == 'NavText')
+  const title = arrayChildren.splice(textIndex, 1)
   return (
-    <SubNabWrapper collapsed={collapsed}>
-      <SideNavConsumer>
-        {(context: SideNavContextType) => {
-          const onClick = (childId) => {
-            context.onNavClick(`${id}/${childId}`)
-          }
-          const newContext = Object.assign({}, context, {
-            onNavClick: onClick,
-            subNav: true
-          })
-          return (
-            <SideNavProvider value={newContext}>
-              {children}
-            </SideNavProvider>
-          )
-        }}
-      </SideNavConsumer>
-    </SubNabWrapper>
+    <SideNavConsumer>
+      {(context: SideNavContextType) => {
+        const onClick = (childId) => {
+          context.onNavClick(`${id}/${childId}`)
+        }
+        const newContext = Object.assign({}, context, {
+          onNavClick: onClick,
+          subNav: true
+        })
+
+        return (
+          <SideNavProvider value={newContext}>
+            <SubNabWrapper onClick={toggle} collapsed={collapsed} theme={context.theme}>
+              {icon}
+              {title}
+            </SubNabWrapper>
+            {arrayChildren}
+          </SideNavProvider>
+        )
+      }}
+    </SideNavConsumer>
   );
 };
 
