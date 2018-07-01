@@ -1,6 +1,8 @@
 import type { Theme } from "./types";
 
 const defaultTheme: Theme = {
+  backGroundColor: "#2c3e50",
+  color: "#fff",
   highlightColor: "#2c3e50",
   highlightBgColor: "#f1f1f1f1",
   hoverBgColor: undefined,

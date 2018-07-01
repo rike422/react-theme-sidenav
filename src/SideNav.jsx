@@ -1,24 +1,35 @@
 // @flow
 import React from "react";
 import { compose, withState } from "recompose";
+import styled from 'styled-components';
 import { type SideNavContextType, SideNavProvider } from "./SideNavContext";
 import { mergeTheme } from "./theme";
+import type { Theme } from "./types";
 
 type PropTypes = {
   selected: string,
   defaultSelected: string,
-  onItemSelection?: (...args) => void
+  onItemSelection?: (...args) => void,
+  theme: Theme,
 };
 
-const noop = () => {};
+const noop = () => {
+};
+
+const SideNavContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  background: ${(p) => p.theme.backGroundColor};
+  color: ${(p) => p.theme.color};
+`
 
 function SideNavBase(props: PropTypes) {
   const { defaultSelected, selected, setSelected, theme, children } = props;
+  const onItemSelection = props.onItemSelection || noop
 
   const onNavClick = (id: string) => {
-    console.log(`on nav click ${id}`);
     setSelected(id, () => {
-      //onItemSelection(id, parent);
+      onItemSelection(id, parent);
     });
     //if (defaultSelected) {
     //  //lets manage it
@@ -27,15 +38,21 @@ function SideNavBase(props: PropTypes) {
     //  //onItemSelection(id, parent);
     //}
   };
-
+  const applyTheme = mergeTheme(theme || {})
   const currentSelected = selected;
   const context: SideNavContextType = {
     highlightedId: currentSelected,
     onNavClick: onNavClick,
-    theme: mergeTheme(theme || {})
+    theme: applyTheme
   };
 
-  return <SideNavProvider value={context}>{children}</SideNavProvider>;
+  return (
+    <SideNavContainer theme={applyTheme}>
+      <SideNavProvider value={context}>
+        {children}
+      </SideNavProvider>
+    </SideNavContainer>);
+
 }
 
 const SideNav = compose(
