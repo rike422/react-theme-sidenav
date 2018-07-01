@@ -7,7 +7,9 @@
     "playground": "webpack-serve --config webpack.playground.config.js",
     "dist": "cp package.json dist && cp README.md dist && babel -D -d dist/ ./src ",
     "test": "jest",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -57,13 +59,18 @@
     "react-test-renderer": "^16.4.1",
     "webpack": "^4.12.1",
     "webpack-cli": "^3.0.8",
-    "webpack-serve": "^1.0.4"
+    "webpack-serve": "^1.0.4",
+    "@storybook/react": "^4.0.0-alpha.10",
+    "@storybook/addon-actions": "^4.0.0-alpha.10",
+    "@storybook/addon-links": "^4.0.0-alpha.10",
+    "@storybook/addons": "^4.0.0-alpha.10",
+    "babel-runtime": "^6.26.0"
   },
   "peerDependencies": {
     "react": "^16"
   },
   "jest": {
     "rootDir": "src",
-    "setupTestFrameworkScriptFile":"<rootDir>/__tests__/setup.test.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup.test.js"
   }
 }

@@ -12,14 +12,6 @@ type callback = (...args: Array<any>) => void;
 type Props = {
   id: string | number,
   children?: React.Element<*>,
-  theme: Theme,
-  isHighlighted?: boolean,
-  onClick?: callback,
-  onNavClick?: callback,
-  highlightedId?: string | number,
-  renderSubNavIndicator?: callback,
-  expanded?: boolean,
-  collapseIndicatorSize?: string
 };
 // const defaultProps = {
 //   onNavClick: identity,
