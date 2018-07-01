@@ -35,9 +35,9 @@ function SideNavBase (props: PropTypes) {
     //}
   };
 
-  const currentSelected =
-    defaultSelected != null ? defaultSelected : selected;
+  const currentSelected = selected;
 
+  console.log(`selected ${selected}`)
   const context: SideNavContextType = {
     highlightedId: currentSelected,
     onNavClick: onNavClick,

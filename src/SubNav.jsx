@@ -5,7 +5,9 @@ import { SideNavConsumer, type SideNavContextType, SideNavProvider } from "./Sid
 import { renderSubNavIndicator } from "./CollapsedIndicator";
 
 const SubNabWrapper = styled.div`
-  max-height: ${p => { return p.collapsed ? 0 : "100%" }};
+  max-height: ${p => {
+  return p.collapsed ? 0 : "100%"
+}};
   overflow-y: hidden;
   cursor: pointer;
   position: relative;
@@ -38,9 +40,6 @@ const SubNabHeader = styled.div`
 `
 const SubNavBase = props => {
   const { id, collapsed, setCollapsed, children } = props;
-  const toggle = () => {
-    setCollapsed(!collapsed)
-  }
 
   const arrayChildren = React.Children.toArray(children)
   const iconIndex = arrayChildren.findIndex(c => c.type.name == 'NavIcon')
@@ -51,8 +50,12 @@ const SubNavBase = props => {
     <SideNavConsumer>
       {(context: SideNavContextType) => {
         const onClick = (childId) => {
-          console.log(`${id}/${childId}`)
           context.onNavClick(`${id}/${childId}`)
+        }
+        const toggle = () => {
+          setCollapsed(!collapsed, () => {
+            context.onNavClick(`${id}`)
+          })
         }
         const newContext = Object.assign({}, context, {
           onNavClick: onClick,
@@ -61,7 +64,7 @@ const SubNavBase = props => {
         const isHighlighted = id === context.highlightedId
         return (
           <SideNavProvider value={newContext}>
-            <SubNabHeader isHighlighted={!collapsed} onClick={toggle} theme={newContext.theme}>
+            <SubNabHeader isHighlighted={isHighlighted} onClick={toggle} theme={newContext.theme}>
               {icon}
               {title}
               <div
