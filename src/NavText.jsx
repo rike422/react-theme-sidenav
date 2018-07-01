@@ -11,15 +11,10 @@ const NavTextCont = styled.div`
 type PropTypes = {
   id: string,
   children: React.Element<*>
-}
+};
 const NavText = (props: PropTypes) => {
   const { id, children } = props;
-  return (
-    <NavTextCont
-    >
-      {children}
-    </NavTextCont>
-  );
+  return <NavTextCont>{children}</NavTextCont>;
 };
 
 export { NavText };

@@ -10,19 +10,19 @@ const NavItemStyled = styled.div`
   cursor: pointer;
   position: relative;
   background: ${props =>
-  props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
+    props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
   color: ${props =>
-  props.isHighlighted ? props.theme.highlightColor : "inherit"};
+    props.isHighlighted ? props.theme.highlightColor : "inherit"};
   &:hover {
     color: ${props =>
-  props.theme.hoverColor ||
-  props.theme.highlightColor ||
-  "inherit"} !important;
-    
+      props.theme.hoverColor ||
+      props.theme.highlightColor ||
+      "inherit"} !important;
+
     background: ${props =>
-  props.theme.hoverBgColor ||
-  props.theme.highlightBgColor ||
-  "inherit"} !important;
+      props.theme.hoverBgColor ||
+      props.theme.highlightBgColor ||
+      "inherit"} !important;
   }
 `;
 
@@ -35,12 +35,17 @@ type Props = {
 };
 
 const NavItem = (props: Props) => {
-  const { children, onClick, theme, subNav, isHighlighted} = props;
+  const { children, onClick, theme, subNav, isHighlighted } = props;
   return (
-    <NavItemStyled onClick={onClick} theme={theme} subNav={subNav} isHighlighted={isHighlighted}>
+    <NavItemStyled
+      onClick={onClick}
+      theme={theme}
+      subNav={subNav}
+      isHighlighted={isHighlighted}
+    >
       {children}
     </NavItemStyled>
-  )
+  );
 };
 
 export { NavItem, NavIcon, NavText };

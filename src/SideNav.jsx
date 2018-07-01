@@ -10,20 +10,13 @@ type PropTypes = {
   onItemSelection?: (...args) => void
 };
 
-const noop = () => {
-};
+const noop = () => {};
 
-function SideNavBase (props: PropTypes) {
-  const {
-    defaultSelected,
-    selected,
-    setSelected,
-    theme,
-    children
-  } = props;
+function SideNavBase(props: PropTypes) {
+  const { defaultSelected, selected, setSelected, theme, children } = props;
 
   const onNavClick = (id: string) => {
-    console.log(`on nav click ${id}`)
+    console.log(`on nav click ${id}`);
     setSelected(id, () => {
       //onItemSelection(id, parent);
     });
@@ -42,11 +35,7 @@ function SideNavBase (props: PropTypes) {
     theme: mergeTheme(theme || {})
   };
 
-  return (
-    <SideNavProvider value={context}>
-      {children}
-    </SideNavProvider>
-  );
+  return <SideNavProvider value={context}>{children}</SideNavProvider>;
 }
 
 const SideNav = compose(
