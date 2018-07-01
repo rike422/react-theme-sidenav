@@ -3,9 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavIcon } from "./NavIcon";
 import { NavText } from "./NavText";
-
 import { type Theme } from "./types";
-import { SideNavConsumer, type SideNavContextType } from "./SideNavContext";
 
 const NavItemStyled = styled.div`
   padding: 8px 12px;

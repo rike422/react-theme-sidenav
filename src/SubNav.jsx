@@ -51,16 +51,17 @@ const SubNavBase = props => {
     <SideNavConsumer>
       {(context: SideNavContextType) => {
         const onClick = (childId) => {
+          console.log(`${id}/${childId}`)
           context.onNavClick(`${id}/${childId}`)
         }
         const newContext = Object.assign({}, context, {
           onNavClick: onClick,
           subNav: true
         })
-
+        const isHighlighted = id === context.highlightedId
         return (
           <SideNavProvider value={newContext}>
-            <SubNabHeader onClick={toggle} theme={newContext.theme}>
+            <SubNabHeader isHighlighted={!collapsed} onClick={toggle} theme={newContext.theme}>
               {icon}
               {title}
               <div
@@ -84,7 +85,7 @@ const SubNavBase = props => {
 };
 
 const SubNav = compose(
-  withState('collapsed', 'setCollapsed', false)
+  withState('collapsed', 'setCollapsed', true)
 )(SubNavBase)
 
 export { SubNav };

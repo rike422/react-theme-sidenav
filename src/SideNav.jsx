@@ -23,7 +23,7 @@ function SideNavBase (props: PropTypes) {
   } = props;
 
   const onNavClick = (id: string) => {
-    console.log(id)
+    console.log(`on nav click ${id}`)
     setSelected(id, () => {
       //onItemSelection(id, parent);
     });

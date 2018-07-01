@@ -1,10 +1,10 @@
 import type { Theme } from "./types";
 
 const defaultTheme: Theme = {
-  highlightColor: '#E91E63',
-  highlightBgColor: '#00bcd4',
-  hoverBgColor: "#2c3e50",
-  hoverColor: "#f1f1f1f1"
+  highlightColor: '#2c3e50',
+  highlightBgColor: '#f1f1f1f1',
+  hoverBgColor: undefined,
+  hoverColor: undefined
 }
 
 const mergeTheme = (theme: Theme): Theme => {
