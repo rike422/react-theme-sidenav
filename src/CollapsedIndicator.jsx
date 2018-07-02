@@ -10,13 +10,9 @@ const Icon = styled.svg`
 			stroke-linecap: round;
 			stroke-width: 5;
 			stroke-dasharray: 29 40;
-			transition: stroke-dashoffset .3s;
+			transition: stroke-dashoffset .5s;
 			stroke-dashoffset: ${p => (!p.collapsed ? -15 : null)};
 		}
-		parent:hover {
-		  > path {
-		  }
-	  }
 `;
 
 const CollapsedIndicator = (props) => {
