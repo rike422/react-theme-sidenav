@@ -19,11 +19,31 @@ const noop = () => {
 const SideNavContainer = styled.div`
   height: 100%;
   width: 100%;
-  background: ${(p) => p.theme.backGroundColor};
+  background: ${(p) => p.theme.bgColor};
   color: ${(p) => p.theme.color};
+  ::after {
+  content: "";
+    background: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.15);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: none;
+    background-size: auto auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+-webkit-transform: translateZ(0px);
+  }
 `
 
-function SideNavBase(props: PropTypes) {
+function SideNavBase (props: PropTypes) {
   const { defaultSelected, selected, setSelected, theme, children } = props;
   const onItemSelection = props.onItemSelection || noop
 

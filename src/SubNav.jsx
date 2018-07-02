@@ -15,11 +15,17 @@ const SubNabWrapper = styled.div`
   overflow-y: hidden;
   cursor: pointer;
   position: relative;
+  padding-left: 1rem;
+  border-left: 3px solid transparent;
+  border-left-color: ${props => (!props.collabsed) ? props.theme.highlightBgColor : "inherit"};
   background: ${props =>
     props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
   color: ${props =>
     props.isHighlighted ? props.theme.highlightColor : "inherit"};
-  transition: all 0.2s ease-in-out;
+  
+  transition-property: max-height border-left-color;
+  transition: all 0.5s ease-in-out;
+  transition-timing-function: cubic-bezier(0.35, 0, 0.25, 1)
 `;
 
 const SubNabHeader = styled.div`
