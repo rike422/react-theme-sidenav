@@ -9,10 +9,13 @@ const NavItemStyled = styled.div`
   padding: 8px 12px;
   cursor: pointer;
   position: relative;
+  transition: background 0.2s ease-in-out;
+  padding-left: ${p => (p.subNav) ? '0.5rem': null }
   background: ${props =>
-    props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
+    props.isHighlighted ? props.theme.highlightBgColor : props.theme.bgColor };
   color: ${props =>
-    props.isHighlighted ? props.theme.highlightColor : "inherit"};
+    props.isHighlighted ? props.theme.highlightColor :  props.theme.color};
+  
   &:hover {
     color: ${props =>
       props.theme.hoverColor ||
