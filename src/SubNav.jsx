@@ -15,7 +15,7 @@ const SubNabWrapper = styled.div`
   overflow-y: hidden;
   cursor: pointer;
   position: relative;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   border-left: 3px solid transparent;
   border-left-color: ${props => (!props.collabsed) ? props.theme.highlightBgColor : "inherit"};
   background: ${props =>

@@ -81,14 +81,11 @@ const ThemeNavBase = (props) => {
           </Nav>
         </SideNav>
       </BaseContainer>
-      <button onClick={() => setTheme(theme1)}> theme1</button>
-      <button onClick={() => setTheme(theme2)}> theme2</button>
-      <button onClick={() => setTheme(theme1)}> theme3</button>
     </div>
   )
 }
 
 
-storiesOf('SideNav', module).add('Theme1', () => ThemeNavBase({ theme: theme1 }))
-storiesOf('SideNav', module).add('Theme2', () => ThemeNavBase({ theme: theme2 }))
-storiesOf('SideNav', module).add('Theme3', () => ThemeNavBase({ theme: theme3 }))
+storiesOf('SideNav/Theme', module).add('Theme1', () => ThemeNavBase({ theme: theme1 }))
+storiesOf('SideNav/Theme', module).add('Theme2', () => ThemeNavBase({ theme: theme2 }))
+storiesOf('SideNav/Theme', module).add('Theme3', () => ThemeNavBase({ theme: theme3 }))

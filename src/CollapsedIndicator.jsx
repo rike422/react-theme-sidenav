@@ -5,6 +5,7 @@ const Icon = styled.svg`
     width: ${p => p.collapseIndicatorSize || "15px"}
     height: ${p => p.collapseIndicatorSize || "15px"}
 		> path {
+		  stroke: ${p => p.collapsed ? '':  p.theme. };
 			fill: none;
 			stroke: #aaa;
 			stroke-linecap: round;
