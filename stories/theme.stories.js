@@ -8,7 +8,7 @@ import { withState, compose } from 'recompose';
 import { TiAnchor, TiBriefcase, TiBusinessCard, TiGroup, TiThListOutline } from "react-icons/lib/ti/index";
 
 const theme1 = {
-  backGroundColor: "#FFF",
+  backGroundColor: "#4ca1d3",
   color: "#FFF",
 }
 
@@ -24,7 +24,7 @@ const ThemeNavBase = (props) => {
   return (
     <div>
       <BaseContainer>
-        <SideNav theme={theme}>
+        <SideNav theme={theme1}>
           <Title> Basic SideNav </Title>
           <Nav id="dashboard">
             <NavIcon>
@@ -83,8 +83,6 @@ const ThemeNavBase = (props) => {
   )
 }
 
-const ThemeNav = compose(
-  withState('theme', 'setTheme', theme1)
-)(ThemeNavBase)
 
-storiesOf('SideNav', module).add('Theme', ThemeNav)
+storiesOf('SideNav', module).add('Theme1', () => ThemeNavBase({ theme: theme1 }))
+storiesOf('SideNav', module).add('Theme2', () => ThemeNavBase({ theme: theme2 }))
