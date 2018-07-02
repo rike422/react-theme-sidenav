@@ -1,17 +1,13 @@
 import React, { type HOC } from "react";
 import { compose, withState } from "recompose";
 import styled from "styled-components";
-import {
-  SideNavConsumer,
-  type SideNavContextType,
-  SideNavProvider
-} from "./SideNavContext";
-import { renderSubNavIndicator } from "./CollapsedIndicator";
+import { CollapsedIndicator } from "./CollapsedIndicator";
+import { SideNavConsumer, type SideNavContextType, SideNavProvider } from "./SideNavContext";
 
 const SubNabWrapper = styled.div`
   max-height: ${p => {
-    return p.collapsed ? 0 : "100%";
-  }};
+  return p.collapsed ? 0 : "100%";
+}};
   overflow-y: hidden;
   cursor: pointer;
   position: relative;
@@ -19,9 +15,9 @@ const SubNabWrapper = styled.div`
   border-left: 3px solid transparent;
   border-left-color: ${props => (!props.collabsed) ? props.theme.highlightBgColor : "inherit"};
   background: ${props =>
-    props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
+  props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
   color: ${props =>
-    props.isHighlighted ? props.theme.highlightColor : "inherit"};
+  props.isHighlighted ? props.theme.highlightColor : "inherit"};
   
   transition-property: max-height border-left-color;
   transition: all 0.5s ease-in-out;
@@ -33,19 +29,22 @@ const SubNabHeader = styled.div`
   cursor: pointer;
   position: relative;
   background: ${props =>
-    props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
+  props.isHighlighted ? props.theme.highlightBgColor : "inherit"};
   color: ${props =>
-    props.isHighlighted ? props.theme.highlightColor : "inherit"};
+  props.isHighlighted ? props.theme.highlightColor : "inherit"};
   &:hover {
     color: ${props =>
-      props.theme.hoverColor ||
-      props.theme.highlightColor ||
-      "inherit"} !important;
+  props.theme.hoverColor ||
+  props.theme.highlightColor ||
+  "inherit"} !important;
 
     background: ${props =>
-      props.theme.hoverBgColor ||
-      props.theme.highlightBgColor ||
-      "inherit"} !important;
+  props.theme.hoverBgColor ||
+  props.theme.highlightBgColor ||
+  "inherit"} !important;
+    path {
+	      stroke: ${props => props.theme.hoverColor || props.theme.highlightColor || "inherit"} !important;
+    }
   }
 `;
 const SubNavBase = props => {
@@ -88,7 +87,7 @@ const SubNavBase = props => {
                   bottom: "4px"
                 }}
               >
-                {renderSubNavIndicator(props)}{" "}
+                <CollapsedIndicator isHighlighted={isHighlighted} collapsed={collapsed} theme={newContext.theme}/>
               </div>
             </SubNabHeader>
             <SubNabWrapper collapsed={collapsed} theme={newContext.theme}>
