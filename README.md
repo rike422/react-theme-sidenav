@@ -1,42 +1,49 @@
-# react-sidenav
+# react-theme-sidenav
 
-[![npm version](https://badge.fury.io/js/react-sidenav.svg)](https://badge.fury.io/js/react-sidenav)
-[![Travis](https://travis-ci.org/wmira/react-sidenav.svg?branch=master&style=flat-square)](https://travis-ci.org/wmira/react-sidenav.svg?branch=master)
+[![npm version](https://badge.fury.io/js/react-theme-sidenav.svg)](https://badge.fury.io/js/react-theme-sidenav)
+[![Travis](https://travis-ci.org/rike422/react-theme-sidenav.svg?branch=master&style=flat-square)](https://travis-ci.org/rike422/react-theme-sidenav.svg?branch=master)
 
 Side Navigation Component for React
 
-![alt tag](https://raw.githubusercontent.com/wmira/react-sidenav/master/sidenav.png) 
+## In Development Project
 
+## Thanks
+
+This project borrow codes from following projects:
+
+- [react-sidenav](https://github.com/rike422/react-sidenav)
 
 ## Usage
 
 Install via npm
 
 ```shell
-npm install --save react-sidenav
+npm install --save react-theme-sidenav
 ```
 
 Then import it using es6 modules
 
 ```javascript
 import React from 'react';
-import SideNav, { Nav, NavIcon, NavText } from 'react-sidenav';
-import SvgIcon from 'react-icons-kit';
-
-import { ic_aspect_ratio } from 'react-icons-kit/md/ic_aspect_ratio';
-import { ic_business } from 'react-icons-kit/md/ic_business';
-
+import SideNav, { Nav, NavIcon, NavText } from 'react-theme-sidenav';
+import { TiAnchor, TiBriefcase, TiThListOutline } from "react-icons/lib/ti/index";
+const theme = {
+    bgColor: '#f5f5f5',
+    color: "#222222",
+    highlightBgColor: "#00BEEF",
+    highlightColor: "#FFF"
+}
 
 //specify the base color/background of the parent container if needed
 const MySideNav = () => (
     <div style={{background: '#2c3e50', color: '#FFF', width: 220}}> 
-        <SideNav highlightColor='#E91E63' highlightBgColor='#00bcd4' defaultSelected='sales'>       
+        <SideNav defaultSelected='sales' theme={theme}>       
             <Nav id='dashboard'>
-                <NavIcon><SvgIcon size={20} icon={ic_aspect_ratio}/></NavIcon>    
+                <NavIcon><TiAnchor size={20} /></NavIcon>    
                 <NavText> Dashboard </NavText>
             </Nav>
             <Nav id='sales'>
-                <NavIcon><SvgIcon size={20} icon={ic_business}/></NavIcon>
+                <NavIcon><TiBriefcase size={20} /></NavIcon>
                 <NavText> Sales </NavText>
             </Nav>
         </SideNav>
@@ -94,34 +101,10 @@ If its a top level nav, then parent is null.
 
 | Property        | Description           | Type  |
 | ------------- |:-------------:| -----:|
-| highlightColor      | color when an item is selected | string |
-| highlightBgColor      | background color when an item is selected   |   string |
-| hoverBgColor | background color on hover. Defaults to highlightBgColor     |    string |
-| hoverColor  | color on hover. Defaults to highlightColor or inherit | string |
-| selected  | selected item, will be stateless | string |
 | defaultSelected  | default id of selected item, will auto manage state | string |
 | onItemSelection  | function called when an item is clicked (id, parent) | function |
 
 
-## React Router 4 Integration
-
-To use with React Router 4, you can use the hoc withRR4 to create a SideNav. Please see playground folder for a full example
-
-```javascript
-
-import { withRR4 } from 'react-sidenav';
-import { BrowserRouter as Router } from 'react-router';
-
-const SideNav = withRR4();
-
-export const Side = () => (
-    <Router>
-        <SideNav>
-            //nav items and route will automatically updated upon selection
-        </SideNav>
-    </Router>
-);
-```
 ### NavIcon and NavText
 
 These 2 components now support style and className props
@@ -136,12 +119,12 @@ The source code for the screenshot is under playground/index.jsx
 
 1. Clone the repo
 ```shell
-git clone https://github.com/wmira/react-sidenav.git
+git clone https://github.com/rike422/react-theme-sidenav.git
 ```
 
 2. Run npm install
 ```shell
-cd react-sidenav
+cd react-theme-sidenav
 npm install
 ```
 3. Run playground script. The script below starts the dev server on port 8080.
