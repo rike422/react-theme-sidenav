@@ -45,6 +45,11 @@ const SubNabHeader = styled.div`
     }
   }
 `;
+
+const matchesSubtree = (subNavId, id) => {
+  return id.indexOf(subNavId) == 0
+}
+
 const SubNavBase = props => {
   const { id, collapsed, setCollapsed, children } = props;
 
@@ -68,7 +73,7 @@ const SubNavBase = props => {
           onNavClick: onClick,
           subNav: true
         });
-        const isHighlighted = id === context.highlightedId;
+        const isHighlighted = matchesSubtree(id, context.highlightedId)
         return (
           <SideNavProvider value={newContext}>
             <SubNabHeader
