@@ -1,10 +1,11 @@
 {
-  "name": "react-themelable-sidenav",
+  "name": "react-theme-sidenav",
   "version": "0.0.1",
   "description": "A React Themelable SideBar Navigation",
   "author": "Akira Takahashi",
   "scripts": {
-    "dist": "cp package.json dist && cp README.md dist && babel -D -d dist/ ./src ",
+    "dist": "npm run build && cp package.json dist && cp README.md dist",
+    "build": "mkdir -p ./dist && babel -D -d dist/ ./src",
     "prepare": "npm run dist",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
@@ -58,8 +59,6 @@
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
     "react-test-renderer": "^16.4.1",
-    "webpack": "^4.12.1",
-    "webpack-cli": "^3.0.8",
     "@storybook/react": "^4.0.0-alpha.10",
     "@storybook/addon-actions": "^4.0.0-alpha.10",
     "@storybook/addon-links": "^4.0.0-alpha.10",
