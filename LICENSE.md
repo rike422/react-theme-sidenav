@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2015 Warren Mira(https://github.com/wmira/react-sidenav)
+Copyright (c) 2015 Warren Mira(https://github.com/rike422/react-theme-sidenav)
 
 Copyright (c) 2018 Akira Takahashi
 

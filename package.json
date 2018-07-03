@@ -5,6 +5,7 @@
   "author": "Akira Takahashi",
   "scripts": {
     "dist": "cp package.json dist && cp README.md dist && babel -D -d dist/ ./src ",
+    "prepare": "npm run dist",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
     "storybook": "start-storybook -p 6006",
@@ -12,12 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/wmira/react-sidenav"
+    "url": "https://github.com/rike422/react-theme-sidenav"
   },
+  "main": "dist/index.js",
   "bugs": {
-    "url": "https://github.com/wmira/react-sidenav/issues"
+    "url": "https://github.com/rike422/react-theme-sidenav/issues"
   },
-  "homepage": "https://github.com/wmira/react-sidenav",
+  "homepage": "https://github.com/rike422/react-theme-sidenav",
   "keywords": [
     "react",
     "react-component",
