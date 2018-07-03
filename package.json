@@ -31,8 +31,7 @@
     "navigation"
   ],
   "dependencies": {
-    "recompose": "^0.27.1",
-    "styled-components": "^3.3.3"
+    "recompose": "^0.27.1"
   },
   "license": "MIT",
   "devDependencies": {
@@ -63,10 +62,12 @@
     "@storybook/addon-actions": "^4.0.0-alpha.10",
     "@storybook/addon-links": "^4.0.0-alpha.10",
     "@storybook/addons": "^4.0.0-alpha.10",
-    "babel-runtime": "^6.26.0"
+    "babel-runtime": "^6.26.0",
+    "styled-components": "^3.3.3"
   },
   "peerDependencies": {
-    "react": "^16"
+    "react": "^16",
+    "styled-components": "^3.3.3"
   },
   "jest": {
     "rootDir": "src",
